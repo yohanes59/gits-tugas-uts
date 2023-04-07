@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,9 @@ Route::prefix('admin')->group(function () {
         return view('admin.dashboard.index');
     })->name('admin.dashboard');
 
-    Route::get('category', function() {
-        return view('admin.category.index');
-    })->name('beranda.category');
+    Route::controller(CategoryController::class)->prefix('category')->group(function () {
+		Route::get('', 'index')->name('category');
+	});
     
     Route::get('product', function() {
         return view('admin.product.index');
@@ -35,3 +36,5 @@ Route::prefix('kasir')->group(function () {
         return view('kasir.dashboard.index');
     })->name('kasir.dashboard');
 });
+
+// Login

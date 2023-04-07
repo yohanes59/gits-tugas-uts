@@ -21,7 +21,7 @@
     
     <!-- category -->
     <li class="nav-item {{ request()->is('admin/category') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('beranda.category') }}">
+        <a class="nav-link" href="{{ route('category') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Category</span></a>
     </li>
