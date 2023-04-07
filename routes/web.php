@@ -13,6 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Admin
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard.index');
+    })->name('admin.dashboard');
+
+    Route::get('category', function() {
+        return view('admin.category.index');
+    })->name('beranda.category');
+    
+    Route::get('product', function() {
+        return view('admin.product.index');
+    })->name('beranda.product');
+});
+
+
+// Kasir
+Route::prefix('kasir')->group(function () {
+    Route::get('/', function() {
+        return view('kasir.dashboard.index');
+    })->name('kasir.dashboard');
 });
