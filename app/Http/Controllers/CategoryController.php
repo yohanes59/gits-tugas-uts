@@ -14,9 +14,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $category = Category::get();
 
         return view('admin.category.index', ['category' => $category]);
+=======
+        return view('admin.category.index');
+>>>>>>> 5c438c28444c9bb5d0d58ceb3c80a59a86e876a0
     }
 
     /**
