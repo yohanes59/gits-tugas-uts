@@ -7,7 +7,7 @@
         <div class="col-md-6">
             <div class="card mx-4">
                 <div class="card-body p-4">
-                    <form method="POST" action="#">
+                    <form action="{{ route('do.register') }}" method="POST" class="">
                         @csrf
                         <h1>Register</h1>
                         <hr>
@@ -61,10 +61,9 @@
                                     <i class="bi bi-lock"></i>
                             </span>
                             </div>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                name="password" placeholder="Password">
+                            <input name="password" type="password" class="form-control form-control-user @error('password')is-invalid @enderror" id="exampleInputPassword" placeholder="Password">
                             @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                              <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="input-group mb-4">
@@ -73,11 +72,16 @@
                                 <i class="bi bi-lock"></i>
                             </span>
                             </div>
-                            <input type="password" name="password_confirmation" class="form-control"
-                                placeholder="Confirm password">
+                            <input name="password_confirmation" type="password" class="form-control form-control-user @error('password_confirmation')is-invalid @enderror" id="exampleRepeatPassword" placeholder="Repeat Password">
+                            @error('password_confirmation')
+                              <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
-                        {{-- <button type="submit" class="btn btn-primary btn-block btn-flat mb-3">Register</button> --}}
-                        <a href="{{ url('admin/dashboard') }}" class="btn btn-primary btn-block btn-flat mb-3">Register</a>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat mb-3">Register</button>
+                        {{-- <a href="{{ url('login') }}" class="btn btn-primary btn-block btn-flat mb-3">Register</a> --}}
+                        <div class="text-center">
+                            <a class="small" href="{{ route('login') }}">Already have an account? Please Login!</a>
+                        </div>
                     </form>
                 </div>
             </div>
