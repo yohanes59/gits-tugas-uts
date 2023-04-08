@@ -57,7 +57,15 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::prefix('/admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::resource('/category', CategoryController::class);
+
+    Route::controller(CategoryController::class)->prefix('category')->group(function () {
+		Route::get('', 'index')->name('category');
+		Route::get('create', 'create')->name('category.tambah');
+		Route::post('store', 'store')->name('category.tambah.simpan');
+		Route::get('edit/{id}', 'edit')->name('category.edit');
+		Route::get('destroy/{id}', 'destroy')->name('category.hapus');
+	});
+
     Route::resource('/product', ProductController::class);
     Route::resource('/transaction', TransactionController::class);
     Route::resource('/detail-transaction', DetailTransactionController::class);

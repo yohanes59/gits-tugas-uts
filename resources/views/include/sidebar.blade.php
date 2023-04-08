@@ -20,11 +20,11 @@
     </li>
     
     <!-- category -->
-    <li class="nav-item {{ request()->is('admin/category') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('admin/category') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Category</span></a>
-    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('category') }}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Kategori</span></a>
+      </li>
 
     <!-- product -->
     <li class="nav-item {{ request()->is('admin/product') ? 'active' : '' }}">
