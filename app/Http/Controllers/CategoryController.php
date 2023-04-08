@@ -36,7 +36,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        $newName = '';
+        if ($request->file('gambar')) {
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $newName = $request->nama_kategori . '-' . now()->timestamp . '.' . $extension;
+            $request->file('gambar')->storeAs('images', $newName, 'public');
+        }
+
+        $request['image'] = $newName;
+        Category::create([
+            'name' => $request->nama_kategori,
+            'image' => $newName,
+        ]);
+
+        return redirect('/admin/category');
     }
 
     /**
