@@ -1,7 +1,7 @@
 <form action="/kategori" method="POST" enctype="multipart/form-data">
     @csrf
     @method('put')
-    <div class="mb-3">
+    <div class="mb-3"> 
       <label for="exampleInpuName" class="form-label">Edit Kategori</label>
       <input type="text"  class="form-control @error('name') is-invalid @enderror" name="name">
       @error('name')
