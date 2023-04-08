@@ -45,11 +45,15 @@ use App\Http\Controllers\DetailTransactionController;
 // });
 
 
-Route::get('/register', [AuthController::class, 'register']);
-Route::get('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'doRegister']);
-Route::post('/login', [AuthController::class, 'doLogin']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::controller(AuthController::class)->group(function () {
+	Route::get('register', 'register')->name('register');
+	Route::post('register', 'doRegister')->name('do.register');
+
+	Route::get('login', 'login')->name('login');
+	Route::post('login', 'doLogin')->name('do.login');
+});
+
+
 
 Route::prefix('/admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
