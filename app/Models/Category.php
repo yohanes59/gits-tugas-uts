@@ -11,11 +11,11 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'image'
+        'image',
     ];
 
-    public function product()
+    public function products()
     {
-        return $this->hasMany(Product::class, 'category_id');
+        return $this->hasMany(Product::class);
     }
 }
