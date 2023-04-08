@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -58,7 +59,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
         //
     }
@@ -83,9 +84,26 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        // cek apa user mengupload image baru
+        if ($request->file('gambar')) {
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $newName = $request->nama_kategori . '-' . now()->timestamp . '.' . $extension;
+            $request->file('gambar')->storeAs('images', $newName, 'public');
+
+            // delete gambar lama dari storage
+            Storage::delete('public/images/' . $category->image);
+
+            $category->image = $newName;
+        }
+
+        $category->name = $request->nama_kategori;
+        $category->save();
+
+        return redirect('/admin/category');
     }
 
     /**
@@ -97,7 +115,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        // Storage::delete('images/' . $category->image);
+        Storage::delete('public/images/' . $category->image);
         $category->delete();
         return redirect('/admin/category');
     }

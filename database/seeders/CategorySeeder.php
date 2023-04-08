@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class CategorySeeder extends Seeder
 {
@@ -31,10 +33,17 @@ class CategorySeeder extends Seeder
             ],
         ];
 
+        $client = new Client();
+
         foreach ($data as $item) {
+            $response = $client->request('GET', $item['image']);
+            $extension = pathinfo($item['image'], PATHINFO_EXTENSION);
+            $imageName = uniqid() . '.' . $extension;
+            Storage::put('public/images/' . $imageName, $response->getBody());
+
             Category::insert([
                 'name' => $item['name'],
-                'image' => $item['image'],
+                'image' => $imageName,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);

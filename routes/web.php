@@ -44,17 +44,13 @@ use App\Http\Controllers\DetailTransactionController;
 //     });
 // });
 
-
 Route::controller(AuthController::class)->group(function () {
-	Route::get('register', 'register')->name('register');
-	Route::post('register', 'doRegister')->name('do.register');
-
-	Route::get('login', 'login')->name('login');
-	Route::post('login', 'doLogin')->name('do.login');
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register', 'doRegister')->name('do.register');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'doLogin')->name('do.login');
+    Route::get('/logout', 'logout')->name('logout');
 });
-
-
-
 Route::prefix('/admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 

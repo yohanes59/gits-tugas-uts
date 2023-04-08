@@ -8,3 +8,5 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('sb-admin/js/sb-admin-2.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/imgPreview.js') }}"></script>

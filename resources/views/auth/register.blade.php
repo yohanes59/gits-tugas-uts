@@ -77,8 +77,8 @@
                               <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        {{-- <button type="submit" class="btn btn-primary btn-block btn-flat mb-3">Register</button> --}}
-                        <a href="{{ url('login') }}" class="btn btn-primary btn-block btn-flat mb-3">Register</a>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat mb-3">Register</button>
+                        {{-- <a href="{{ url('login') }}" class="btn btn-primary btn-block btn-flat mb-3">Register</a> --}}
                         <div class="text-center">
                             <a class="small" href="{{ route('login') }}">Already have an account? Please Login!</a>
                         </div>
