@@ -13,32 +13,32 @@
     <hr class="sidebar-divider my-0">
 
     <!-- admin - Dashboard -->
-    <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+    <li class="nav-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('admin/dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard Admin</span></a>
     </li>
     
     <!-- category -->
     <li class="nav-item {{ request()->is('admin/category') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('beranda.category') }}">
+        <a class="nav-link" href="{{ url('admin/category') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Category</span></a>
     </li>
 
     <!-- product -->
     <li class="nav-item {{ request()->is('admin/product') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('beranda.product') }}">
+        <a class="nav-link" href="{{ url('admin/product') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Product</span></a>
     </li>
 
 
-    <!-- kasir - Dashboard -->
-    <li class="nav-item {{ request()->is('kasir') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('kasir.dashboard') }}">
+    <!-- kasir -->
+    <li class="nav-item {{ request()->is('kasir/cart') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('kasir/cart') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard Kasir</span></a>
+            <span>Kasir</span></a>
     </li>
 
     <!-- Divider -->
