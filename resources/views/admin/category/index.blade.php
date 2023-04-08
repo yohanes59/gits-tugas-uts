@@ -24,8 +24,8 @@
                     <td>{{ $item->name }}</td>
                     <td>
                         @if ($item->image != '')
-                            <img src="{{ $item->image }}" alt="gambar kategori {{ $item->name }}" width="60"
-                                height="60">
+                            <img src="{{ asset('storage/images/' . $item->image) }}"
+                                alt="gambar kategori {{ $item->name }}" width="60" height="60">
                         @else
                             <img src="{{ asset('img/no-image.jpg') }}" alt="gambar kategori {{ $item->name }}"
                                 width="60" height="60">
