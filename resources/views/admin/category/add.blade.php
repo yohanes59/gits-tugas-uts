@@ -3,7 +3,7 @@
 @section('title', 'Category - Tambah')
 
 @section('content')
-    <form action="{{ url('/admin/category') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ isset($category) ? route('category.tambah', $category->id) : route('category.tambah.simpan') }}" method="post">
         @csrf
         <div class="my-2">
             <label for="nama_kategori" class="form-label">Tambah Kategori</label>

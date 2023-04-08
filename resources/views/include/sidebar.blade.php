@@ -23,7 +23,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('category') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Kategori</span></a>
+          <span>Category</span></a>
       </li>
 
     <!-- product -->

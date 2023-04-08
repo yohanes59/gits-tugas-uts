@@ -60,10 +60,10 @@ Route::prefix('/admin')->group(function () {
 
     Route::controller(CategoryController::class)->prefix('category')->group(function () {
 		Route::get('', 'index')->name('category');
-		Route::get('create', 'create')->name('category.tambah');
-		Route::post('store', 'store')->name('category.tambah.simpan');
+		Route::get('tambah', 'create')->name('category.tambah');
+		Route::post('simpan', 'store')->name('category.tambah.simpan');
 		Route::get('edit/{id}', 'edit')->name('category.edit');
-		Route::get('destroy/{id}', 'destroy')->name('category.hapus');
+		Route::get('hapus/{id}', 'destroy')->name('category.hapus');
 	});
 
     Route::resource('/product', ProductController::class);

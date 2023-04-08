@@ -6,7 +6,6 @@
     {{-- {{ $kategori }} --}}
     <h1>Beranda Category</h1>
     <a href="{{ route('category.tambah') }}" class="btn btn-primary mb-3">+Tambah Kategori</a>
-
     <div class="table-responsive">
         <table class="table table-striped table-hover border">
             <thead>
@@ -35,11 +34,7 @@
                         <td class="py-3 align-middle">{{ $item->created_at->format('d M Y H:i:s') }}</td>
                         <td class="d-flex py-3 align-middle gap-2">
                             <a href="{{ route('category.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                @method('DELETE')
-                                @csrf
-                                <button class="btn btn-danger"
-                                    onclick="return confirm('Yakin Ingin Menghapus Data Ini?')">Hapus</button>
-                            </form>
+                            <a href="{{ route('category.hapus', $item->id) }}" class="btn btn-danger" onclick="return confirm('Yakin Ingin Menghapus Data Ini?')">Hapus</a>
                         </td>
                     </tr>
                 @endforeach
