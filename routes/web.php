@@ -21,45 +21,34 @@ use App\Http\Controllers\DetailTransactionController;
 |
 */
 
-// // Admin
-// Route::prefix('admin')->group(function () {
-//     Route::controller(DashboardController::class)->prefix('/')->group(function () {
-//         Route::get('', 'index')->name('admin.dashboard');
-//     });
-
-//     Route::controller(CategoryController::class)->prefix('/category')->group(function () {
-//         Route::get('', 'index')->name('beranda.category');
-//     });
-
-//     Route::controller(ProductController::class)->prefix('/product')->group(function () {
-//         Route::get('', 'index')->name('beranda.product');
-//     });
-// });
-
-
-// // Kasir
-// Route::prefix('/kasir')->group(function () {
-//     Route::controller(CashierController::class)->prefix('/')->group(function () {
-//         Route::get('', 'index')->name('kasir.dashboard');
-//     });
-// });
-
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/register', 'register')->name('register');
+    Route::get('/admin/register', 'register')->name('register');
     Route::post('/register', 'doRegister')->name('do.register');
-    Route::get('/login', 'login')->name('login');
+    Route::get('/login', 'login')->name('login')->middleware('isLogin');
     Route::post('/login', 'doLogin')->name('do.login');
     Route::get('/logout', 'logout')->name('logout');
-});
-Route::prefix('/admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::resource('/category', CategoryController::class);
-    Route::resource('/product', ProductController::class);
-    Route::resource('/transaction', TransactionController::class);
-    Route::resource('/detail-transaction', DetailTransactionController::class);
+    // route untuk edit akun kasir setelah login
+    // route untuk delete akun kasir setelah login
 });
 
-Route::prefix('/kasir')->group(function () {
-    Route::resource('/cart', CartController::class);
-    Route::resource('/order', OrderController::class);
+Route::middleware('auth')->group(function () {
+    Route::prefix('/admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::resource('/category', CategoryController::class);
+        Route::resource('/product', ProductController::class);
+        Route::resource('/transaction', TransactionController::class);
+        Route::resource('/detail-transaction', DetailTransactionController::class);
+
+        Route::controller(DashboardController::class)->group(function () {
+            Route::get('/cashier-account', 'account');
+        });
+    });
+
+    Route::prefix('/cashier')->group(function () {
+        Route::resource('/cart', CartController::class);
+        Route::resource('/order', OrderController::class);
+    });
 });
+
+Route::redirect('/', '/login');
+Route::redirect('/register', '/login');

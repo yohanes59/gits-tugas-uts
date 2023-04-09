@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Rules;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthController extends Controller
 {
@@ -17,22 +19,16 @@ class AuthController extends Controller
 		return view('auth/register');
 	}
 
-	public function doRegister(Request $request)
+	public function doRegister(AuthRequest $request)
 	{
-		Validator::make($request->all(), [
-			'nama' => 'required',
-			'email' => ['required','string', 'email', 'unique:'.User::class],
-			'password' => ['required', 'confirmed', Rules\Password::defaults()]
-		])->validate();
-
 		User::create([
-			'nama' => $request->nama,
+			'name' => $request->name,
 			'email' => $request->email,
 			'password' => Hash::make($request->password),
-			'role' => $request->role
+			'role' => 'kasir'
 		]);
 
-		return redirect()->route('login');
+		return redirect('/admin/cashier-account')->with('alert', 'Berhasil membuat akun kasir');
 	}
 
 	public function login()
@@ -55,7 +51,11 @@ class AuthController extends Controller
 
 		$request->session()->regenerate();
 
-		return redirect()->route('dashboard');
+		if (Auth::user()->name == 'admin') {
+			return redirect('/admin/dashboard');
+		} else {
+			return redirect('/cashier/cart');
+		}
 	}
 
 	public function logout(Request $request)
@@ -64,6 +64,24 @@ class AuthController extends Controller
 
 		$request->session()->invalidate();
 
-		return redirect('/');
+		return redirect('/login');
+	}
+
+	public function edit($id)
+	{
+		$auth = User::findOrFail($id);
+		// kurang tampilan untuk edit akun kasir dan routenya
+		// return view('admin.category.edit', ['kategori' => $category]);
+	}
+
+	public function update(Request $request, $id)
+	{
+		// kurang tampilan untuk edit akun kasir dan routenya
+
+	}
+
+	public function destroy()
+	{
+		// kurang route delete
 	}
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.index');
+        $product = Product::with('category')->paginate(10);
+        return view('admin.product.index', ['produk' => $product]);
     }
 
     /**
@@ -24,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::get();
+        return view('admin.product.add', ['kategori' => $category]);
     }
 
     /**
@@ -35,7 +39,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newName = '';
+        if ($request->file('gambar')) {
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $newName = $request->nama_produk . '-' . now()->timestamp . '.' . $extension;
+            $request->file('gambar')->storeAs('images', $newName, 'public');
+        }
+
+        $request['image'] = $newName;
+        Product::create([
+            'category_id' => $request->kategori_produk,
+            'name' => $request->nama_produk,
+            'price' => $request->harga,
+            'description' => $request->deskripsi,
+            'image' => $newName,
+        ]);
+
+        return redirect('/admin/product')->with('alert', 'Berhasil menambahkan product');
     }
 
     /**
@@ -55,9 +75,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $category = Category::get();
+
+        return view('admin.product.edit', ['produk' => $product, 'kategori' => $category]);
     }
 
     /**
@@ -67,9 +90,31 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        if ($request->file('gambar')) {
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $newName = $request->nama_produk . '-' . now()->timestamp . '.' . $extension;
+            $request->file('gambar')->storeAs('images', $newName, 'public');
+
+            // delete gambar lama dari storage
+            Storage::delete('public/images/' . $product->image);
+
+            $product->image = $newName;
+        }
+
+        $data = [
+            'category_id' => $request->kategori_produk,
+            'name' => $request->nama_produk,
+            'price' => $request->harga,
+            'description' => $request->deskripsi,
+        ];
+
+        $product->update($data);
+
+        return redirect('/admin/product')->with('alert', 'Berhasil mengubah product');
     }
 
     /**
@@ -78,8 +123,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        Storage::delete('public/images/' . $product->image);
+        $product->delete();
+        return redirect('/admin/product')->with('alert', 'Berhasil menghapus product');
     }
 }

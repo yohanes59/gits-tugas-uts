@@ -51,7 +51,7 @@ class CategoryController extends Controller
             'image' => $newName,
         ]);
 
-        return redirect('/admin/category');
+        return redirect('/admin/category')->with('alert', 'Berhasil menambahkan category');
     }
 
     /**
@@ -75,7 +75,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         return view('admin.category.edit', ['kategori' => $category]);
-        // return view('admin.category.edit');
     }
 
     /**
@@ -104,7 +103,7 @@ class CategoryController extends Controller
         $category->name = $request->nama_kategori;
         $category->save();
 
-        return redirect('/admin/category');
+        return redirect('/admin/category')->with('alert', 'Berhasil mengubah category');
     }
 
     /**
@@ -118,6 +117,6 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         Storage::delete('public/images/' . $category->image);
         $category->delete();
-        return redirect('/admin/category');
+        return redirect('/admin/category')->with('alert', 'Berhasil menghapus category');
     }
 }
