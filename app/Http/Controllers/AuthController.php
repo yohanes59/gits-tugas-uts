@@ -66,4 +66,22 @@ class AuthController extends Controller
 
 		return redirect('/login');
 	}
+
+	public function edit($id)
+	{
+		$auth = User::findOrFail($id);
+		// kurang tampilan untuk edit akun kasir dan routenya
+		// return view('admin.category.edit', ['kategori' => $category]);
+	}
+
+	public function update(Request $request, $id)
+	{
+		// kurang tampilan untuk edit akun kasir dan routenya
+
+	}
+
+	public function destroy()
+	{
+		// kurang route delete
+	}
 }

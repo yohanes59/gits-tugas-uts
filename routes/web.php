@@ -27,6 +27,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'login')->name('login')->middleware('isLogin');
     Route::post('/login', 'doLogin')->name('do.login');
     Route::get('/logout', 'logout')->name('logout');
+    // route untuk edit akun kasir setelah login
+    // route untuk delete akun kasir setelah login
 });
 
 Route::middleware('auth')->group(function () {
@@ -49,3 +51,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::redirect('/', '/login');
+Route::redirect('/register', '/login');
