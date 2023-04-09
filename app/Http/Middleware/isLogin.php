@@ -18,7 +18,7 @@ class isLogin
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()) {
-            return redirect('/admin/dashboard')->with('succsess', 'Sudah dalam keadaan Login');
+            return redirect('/admin/dashboard')->with('success', 'Sudah dalam keadaan Login');
         }
 
         return $next($request);

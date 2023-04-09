@@ -21,36 +21,13 @@ use App\Http\Controllers\DetailTransactionController;
 |
 */
 
-// // Admin
-// Route::prefix('admin')->group(function () {
-//     Route::controller(DashboardController::class)->prefix('/')->group(function () {
-//         Route::get('', 'index')->name('admin.dashboard');
-//     });
-
-//     Route::controller(CategoryController::class)->prefix('/category')->group(function () {
-//         Route::get('', 'index')->name('beranda.category');
-//     });
-
-//     Route::controller(ProductController::class)->prefix('/product')->group(function () {
-//         Route::get('', 'index')->name('beranda.product');
-//     });
-// });
-
-
-// // Kasir
-// Route::prefix('/kasir')->group(function () {
-//     Route::controller(CashierController::class)->prefix('/')->group(function () {
-//         Route::get('', 'index')->name('kasir.dashboard');
-//     });
-// });
-
-    Route::controller(AuthController::class)->group(function () {
-        Route::get('/register', 'register')->name('register')->middleware('isLogin');
-        Route::post('/register', 'doRegister')->name('do.register');
-        Route::get('/login', 'login')->name('login')->middleware('isLogin');
-        Route::post('/login', 'doLogin')->name('do.login');
-        Route::get('/logout', 'logout')->name('logout');
-    });
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/register', 'register')->name('register')->middleware('isLogin');
+    Route::post('/register', 'doRegister')->name('do.register');
+    Route::get('/login', 'login')->name('login')->middleware('isLogin');
+    Route::post('/login', 'doLogin')->name('do.login');
+    Route::get('/logout', 'logout')->name('logout');
+});
 
 Route::middleware('auth')->group(function () {
     Route::prefix('/admin')->group(function () {
