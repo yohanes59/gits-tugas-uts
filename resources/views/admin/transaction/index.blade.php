@@ -21,7 +21,9 @@
                     <td class="py-3 align-middle">Kasir 1</td>
                     <td class="py-3 align-middle">Rp 61.000</td>
                     <td class="d-flex py-3 align-middle gap-2">
-                        <a href="/admin/detail-transaction/show" class="btn btn-sm btn-primary">Detail</a>
+                        <a href="/admin/detail-transaction/show" class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>
