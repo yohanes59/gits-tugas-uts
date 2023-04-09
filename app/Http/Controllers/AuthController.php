@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Rules;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthController extends Controller
 {
@@ -50,7 +51,7 @@ class AuthController extends Controller
 
 		$request->session()->regenerate();
 
-		return redirect()->route('dashboard');
+		return redirect('/admin/dashboard');
 	}
 
 	public function logout(Request $request)
@@ -59,6 +60,6 @@ class AuthController extends Controller
 
 		$request->session()->invalidate();
 
-		return redirect('/');
+		return redirect('/login');
 	}
 }
