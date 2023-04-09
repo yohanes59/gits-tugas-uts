@@ -3,8 +3,7 @@
 @section('title', 'Category - Beranda')
 
 @section('content')
-    {{-- {{ $kategori }} --}}
-    <h2>Beranda Category</h2>
+    <h3>Beranda Category</h3>
     <a href="{{ url('/admin/category/create') }}" class="btn btn-primary my-3">Tambah Data</a>
 
     <div class="table-responsive">
