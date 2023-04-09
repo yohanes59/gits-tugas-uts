@@ -75,7 +75,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         return view('admin.category.edit', ['kategori' => $category]);
-        // return view('admin.category.edit');
     }
 
     /**

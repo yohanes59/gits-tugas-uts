@@ -75,9 +75,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $category = Category::get();
+
+        return view('admin.product.edit', ['produk' => $product, 'kategori' => $category]);
     }
 
     /**
@@ -87,9 +90,31 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        if ($request->file('gambar')) {
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $newName = $request->nama_produk . '-' . now()->timestamp . '.' . $extension;
+            $request->file('gambar')->storeAs('images', $newName, 'public');
+
+            // delete gambar lama dari storage
+            Storage::delete('public/images/' . $product->image);
+
+            $product->image = $newName;
+        }
+
+        $data = [
+            'category_id' => $request->kategori_produk,
+            'name' => $request->nama_produk,
+            'price' => $request->harga,
+            'description' => $request->deskripsi,
+        ];
+
+        $product->update($data);
+
+        return redirect('/admin/product');
     }
 
     /**
