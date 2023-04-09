@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,22 +18,16 @@ class AuthController extends Controller
 		return view('auth/register');
 	}
 
-	public function doRegister(Request $request)
+	public function doRegister(AuthRequest $request)
 	{
-		Validator::make($request->all(), [
-			'nama' => 'required',
-			'email' => ['required','string', 'email', 'unique:'.User::class],
-			'password' => ['required', 'confirmed', Rules\Password::defaults()]
-		])->validate();
-
 		User::create([
-			'nama' => $request->nama,
+			'name' => $request->name,
 			'email' => $request->email,
 			'password' => Hash::make($request->password),
-			'role' => $request->role
+			'role' => 'admin'
 		]);
 
-		return redirect()->route('login');
+		return redirect('/login');
 	}
 
 	public function login()

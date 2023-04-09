@@ -80,7 +80,7 @@
                         <button type="submit" class="btn btn-primary btn-block btn-flat mb-3">Register</button>
                         {{-- <a href="{{ url('login') }}" class="btn btn-primary btn-block btn-flat mb-3">Register</a> --}}
                         <div class="text-center">
-                            <a class="small" href="{{ route('login') }}">Already have an account? Please Login!</a>
+                            <a class="small" href="{{ route('login') }}">Sudah Punya Akun? Silahkan Login!</a>
                         </div>
                     </form>
                 </div>
