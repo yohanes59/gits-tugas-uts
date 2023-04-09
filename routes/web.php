@@ -59,7 +59,7 @@ Route::prefix('/admin')->group(function () {
     Route::resource('/detail-transaction', DetailTransactionController::class);
 });
 
-Route::prefix('/kasir')->group(function () {
+Route::prefix('/cashier')->group(function () {
     Route::resource('/cart', CartController::class);
     Route::resource('/order', OrderController::class);
 });
