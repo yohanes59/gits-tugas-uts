@@ -25,10 +25,10 @@ class AuthController extends Controller
 			'name' => $request->name,
 			'email' => $request->email,
 			'password' => Hash::make($request->password),
-			'role' => 'admin'
+			'role' => 'kasir'
 		]);
 
-		return redirect('/login');
+		return redirect('/admin/cashier-account')->with('alert', 'Berhasil membuat akun kasir');
 	}
 
 	public function login()
@@ -51,7 +51,11 @@ class AuthController extends Controller
 
 		$request->session()->regenerate();
 
-		return redirect('/admin/dashboard');
+		if (Auth::user()->name == 'admin') {
+			return redirect('/admin/dashboard');
+		} else {
+			return redirect('/cashier/cart');
+		}
 	}
 
 	public function logout(Request $request)

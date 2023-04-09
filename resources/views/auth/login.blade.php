@@ -37,9 +37,6 @@
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-primary btn-block btn-flat mb-3">Login</button>
-                        <div class="text-center">
-                            <a class="small" href="{{ route('register') }}">Belum Punya Akun ?</a>
-                          </div>
                     </form>
                 </div>
             </div>

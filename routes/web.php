@@ -22,7 +22,7 @@ use App\Http\Controllers\DetailTransactionController;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/register', 'register')->name('register')->middleware('isLogin');
+    Route::get('/admin/register', 'register')->name('register');
     Route::post('/register', 'doRegister')->name('do.register');
     Route::get('/login', 'login')->name('login')->middleware('isLogin');
     Route::post('/login', 'doLogin')->name('do.login');
@@ -36,6 +36,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('/product', ProductController::class);
         Route::resource('/transaction', TransactionController::class);
         Route::resource('/detail-transaction', DetailTransactionController::class);
+
+        Route::controller(DashboardController::class)->group(function () {
+            Route::get('/cashier-account', 'account');
+        });
     });
 
     Route::prefix('/cashier')->group(function () {

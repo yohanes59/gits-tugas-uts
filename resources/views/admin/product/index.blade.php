@@ -14,6 +14,11 @@
         </div>    
     @endif
 
+    {{-- pagination --}}
+    <div class="d-flex justify-content-center">
+        {!! $produk->links() !!}
+    </div>
+
     <div class="table-responsive">
         <table class="table table-striped table-hover border">
             <thead>
@@ -64,5 +69,10 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    {{-- pagination --}}
+    <div class="d-flex mb-3 justify-content-center">
+        {!! $produk->links() !!}
     </div>
 @endsection
