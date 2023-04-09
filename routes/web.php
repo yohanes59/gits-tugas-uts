@@ -44,22 +44,25 @@ use App\Http\Controllers\DetailTransactionController;
 //     });
 // });
 
-Route::controller(AuthController::class)->group(function () {
-    Route::get('/register', 'register')->name('register');
-    Route::post('/register', 'doRegister')->name('do.register');
-    Route::get('/login', 'login')->name('login');
-    Route::post('/login', 'doLogin')->name('do.login');
-    Route::get('/logout', 'logout')->name('logout');
-});
-Route::prefix('/admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::resource('/category', CategoryController::class);
-    Route::resource('/product', ProductController::class);
-    Route::resource('/transaction', TransactionController::class);
-    Route::resource('/detail-transaction', DetailTransactionController::class);
-});
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/register', 'register')->name('register')->middleware('isLogin');
+        Route::post('/register', 'doRegister')->name('do.register');
+        Route::get('/login', 'login')->name('login')->middleware('isLogin');
+        Route::post('/login', 'doLogin')->name('do.login');
+        Route::get('/logout', 'logout')->name('logout');
+    });
 
-Route::prefix('/cashier')->group(function () {
-    Route::resource('/cart', CartController::class);
-    Route::resource('/order', OrderController::class);
+Route::middleware('auth')->group(function () {
+    Route::prefix('/admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::resource('/category', CategoryController::class);
+        Route::resource('/product', ProductController::class);
+        Route::resource('/transaction', TransactionController::class);
+        Route::resource('/detail-transaction', DetailTransactionController::class);
+    });
+
+    Route::prefix('/cashier')->group(function () {
+        Route::resource('/cart', CartController::class);
+        Route::resource('/order', OrderController::class);
+    });
 });

@@ -9,7 +9,7 @@
                 <div class="card-body p-4">
                     <form action="{{ route('do.login') }}" method="POST">
                         @csrf
-                        <h1>Login</h1>
+                        <h1>Silahkan Login</h1>
                         <hr>
                         
                         <div class="input-group mb-3">
@@ -36,8 +36,10 @@
                               <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        
                         <button type="submit" class="btn btn-primary btn-block btn-flat mb-3">Login</button>
+                        <div class="text-center">
+                            <a class="small" href="{{ route('register') }}">Belum Punya Akun ?</a>
+                          </div>
                     </form>
                 </div>
             </div>
