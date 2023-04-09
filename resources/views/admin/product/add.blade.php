@@ -10,12 +10,12 @@
         <div class="fs-4">Tambah Product</div>
     </div>
 
-    <div class="col-md-5 mt-4">
+    <div class="col-md-5 my-4">
         <form action="{{ url('/admin/product') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="my-2">
-                <label for="kategori_produk" class="form-label">Nama Product</label>
+                <label for="kategori_produk" class="form-label">Category Product</label>
                 <select name="kategori_produk" id="kategori_produk" class="form-control">
                     <option selected disabled hidden>Pilih Kategori Produk</option>
                     @foreach ($kategori as $item)

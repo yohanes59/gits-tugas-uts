@@ -7,7 +7,7 @@
         <div class="col-md-6">
             <div class="card mx-4">
                 <div class="card-body p-4">
-                    <form action="{{ route('do.register') }}" method="POST" class="">
+                    <form action="{{ route('do.register') }}" method="POST">
                         @csrf
                         <h1>Register</h1>
                         <hr>

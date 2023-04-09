@@ -6,6 +6,14 @@
     <h3>Beranda Category</h3>
     <a href="{{ url('/admin/category/create') }}" class="btn btn-primary my-3">Tambah Data</a>
 
+    {{-- alert --}}
+    @if ($message = Session::get('alert'))
+        <div class="alert alert-success py-3 alert-dismissible fade show" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>    
+    @endif
+
     <div class="table-responsive">
         <table class="table table-striped table-hover border">
             <thead>

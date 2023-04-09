@@ -55,7 +55,7 @@ class ProductController extends Controller
             'image' => $newName,
         ]);
 
-        return redirect('/admin/product');
+        return redirect('/admin/product')->with('alert', 'Berhasil menambahkan product');
     }
 
     /**
@@ -114,7 +114,7 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect('/admin/product');
+        return redirect('/admin/product')->with('alert', 'Berhasil mengubah product');
     }
 
     /**
@@ -128,6 +128,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         Storage::delete('public/images/' . $product->image);
         $product->delete();
-        return redirect('/admin/product');
+        return redirect('/admin/product')->with('alert', 'Berhasil menghapus product');
     }
 }
