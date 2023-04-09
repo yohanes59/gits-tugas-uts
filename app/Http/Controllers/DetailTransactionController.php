@@ -44,9 +44,9 @@ class DetailTransactionController extends Controller
      * @param  \App\Models\DetailTransaction  $detailTransaction
      * @return \Illuminate\Http\Response
      */
-    public function show(DetailTransaction $detailTransaction)
+    public function show($id)
     {
-        //
+        return view('admin.transaction.detail');
     }
 
     /**
