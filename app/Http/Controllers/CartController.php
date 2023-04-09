@@ -14,7 +14,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('kasir.pos.index');
+        return view('cashier.pos.index');
     }
 
     /**
