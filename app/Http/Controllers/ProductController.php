@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -25,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::get();
+        return view('admin.product.add', ['kategori' => $category]);
     }
 
     /**
@@ -36,7 +38,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newName = '';
+        if ($request->file('gambar')) {
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $newName = $request->nama_produk . '-' . now()->timestamp . '.' . $extension;
+            $request->file('gambar')->storeAs('images', $newName, 'public');
+        }
+
+        $request['image'] = $newName;
+        Product::create([
+            'category_id' => $request->kategori_produk,
+            'name' => $request->nama_produk,
+            'price' => $request->harga,
+            'description' => $request->deskripsi,
+            'image' => $newName,
+        ]);
+
+        return redirect('/admin/product');
     }
 
     /**
