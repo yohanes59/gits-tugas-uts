@@ -37,13 +37,19 @@
                         <td class="py-3 align-middle">{{ number_format($item->price, 0, ',', '.') }}</td>
                         <td class="py-3 align-middle">{{ $item->created_at->format('d M Y H:i:s') }}</td>
                         <td class="d-flex py-3 align-middle gap-2">
-                            <a href="" class="btn btn-success">Detail</a>
-                            <a href="/admin/product/{{ $item->id }}/edit" class="btn btn-primary">Edit</a>
+                            <a href="" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                            <a href="/admin/product/{{ $item->id }}/edit" class="btn btn-warning btn-sm">
+                                <i class="fa-solid fa-edit"></i>
+                            </a>
                             <form action="{{ url('/admin/product/' . $item->id) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn btn-danger"
-                                    onclick="return confirm('Yakin Ingin Menghapus Data Ini?')">Hapus</button>
+                                <button class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Yakin Ingin Menghapus Data Ini?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>
