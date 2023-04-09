@@ -47,3 +47,5 @@ Route::middleware('auth')->group(function () {
         Route::resource('/order', OrderController::class);
     });
 });
+
+Route::redirect('/', '/login');
