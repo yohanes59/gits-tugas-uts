@@ -34,7 +34,7 @@
                             @endif
                         </td>
                         <td class="py-3 align-middle">{{ $item->name }}</td>
-                        <td class="py-3 align-middle">{{ $item->price }}</td>
+                        <td class="py-3 align-middle">{{ number_format($item->price, 0, ',', '.') }}</td>
                         <td class="py-3 align-middle">{{ $item->created_at->format('d M Y H:i:s') }}</td>
                         <td class="d-flex py-3 align-middle gap-2">
                             <a href="" class="btn btn-success">Detail</a>
