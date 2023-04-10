@@ -33,7 +33,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('AdminOnly');
         Route::resource('/category', CategoryController::class);
         Route::resource('/product', ProductController::class);
         Route::resource('/transaction', TransactionController::class);
