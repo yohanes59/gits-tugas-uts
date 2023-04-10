@@ -50,7 +50,7 @@
                         <td class="py-3 align-middle">{{ number_format($item->price, 0, ',', '.') }}</td>
                         <td class="py-3 align-middle">{{ $item->created_at->format('d M Y H:i:s') }}</td>
                         <td class="d-flex py-4 align-middle gap-2">
-                            <a href="" class="btn btn-primary btn-sm">
+                            <a href="/admin/product/{{ $item->id }}" class="btn btn-primary btn-sm">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
                             <a href="/admin/product/{{ $item->id }}/edit" class="btn btn-warning btn-sm">

@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder
                 'category_id' => '1',
                 'name' => 'Americano',
                 'price' => '15000',
-                'description' => 'Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini sebanyak 6 hingga 8 ons.',
+                'description' => 'Caffe Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini sebanyak 6 hingga 8 ons.',
                 'image' => 'https://images.unsplash.com/photo-1580661869408-55ab23f2ca6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80'
             ],
             [
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
                 'category_id' => '2',
                 'name' => 'Americano',
                 'price' => '18000',
-                'description' => 'Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini sebanyak 6 hingga 8 ons.',
+                'description' => 'Caffe Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini sebanyak 6 hingga 8 ons.',
                 'image' => 'https://images.unsplash.com/photo-1581996323441-538096e854b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80'
             ],
             [
