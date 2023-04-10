@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminOnly
+class CheckRole
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,8 @@ class AdminOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role == 'Kasir') {
-            return redirect('/cashier/cart');
+        if(Auth::check() && Auth::user()->role == 'Admin') {
+            return redirect('/admin/dashboard');
         }
-    
-        return $next($request);
     }
 }
