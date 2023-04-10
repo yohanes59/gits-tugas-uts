@@ -17,7 +17,7 @@
 
             <div class="my-2">
                 <label for="kategori_produk" class="form-label">Category Product</label>
-                <select name="kategori_produk" id="kategori_produk" class="form-control">
+                <select name="kategori_produk" id="kategori_produk" class="form-control form-select">
                     <option selected disabled hidden>Pilih Kategori Produk</option>
                     @foreach ($kategori as $item)
                         <option value="{{ $item->id }}"
