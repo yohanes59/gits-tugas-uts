@@ -5,12 +5,13 @@
 @section('content')
     {{-- alert --}}
     @if ($message = Session::get('alert'))
-    <div class="alert alert-success py-3 alert-dismissible fade show" role="alert">
-        <strong>{{ $message }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>    
+        <div class="alert alert-success py-3 alert-dismissible fade show" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
 
+    id: {{ Auth::user()->id }} | {{ Auth::user()->name }}
     <div class="mt-3 mb-5">
         <div class="d-flex justify-content-between mb-3">
             <div class="fs-5">Pilih produk</div>
@@ -22,89 +23,117 @@
             </a>
         </div>
 
-        {{-- tampilan primitif --}}
-        {{-- Menu Hot --}}
-        <h4 class="fw-bold mx-4 text-dark">Hot</h4>
-        <div class="col-md-12">
-            <div class="d-flex flex-wrap row-gap-3">
-                @foreach ($menu_hot as $item_hot)
-                    <div class="col-md-2">
-                        <div class="card">
-                            @if ($item_hot->image != '')
-                                <img src="{{ asset('storage/images/' . $item_hot->image) }}" class="card-img-top" height="200" alt="Gambar Produk {{ $item_hot->name }}">
-                            @else
-                                <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
-                            @endif
-                            <div class="card-body">
-                            <div class="card-title">{{ $item_hot->name }}</div>
-                            <div class="card-title fw-bold">Rp {{ number_format($item_hot->price, 0, ',', '.') }}</div>
-                            <div class="d-flex justify-content-between border rounded-2 overflow-hidden mb-3">
-                                <button type="button" style="max-width: 40px" class="w-100 btn btn-light text-center py-2 rounded-0 border-end">-</button>
-                                <div class="w-100 text-center py-2">1</div>
-                                <button type="button" style="max-width: 40px" class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start">+</button>
-                            </div>
-                            <button type="submit" class="btn btn-block btn-primary">Tambah</button>
+        <form action="{{ url('/cashier/order') }}" method="POST">
+            @csrf
+            {{-- tampilan primitif --}}
+            {{-- Menu Hot --}}
+            <h4 class="fw-bold mx-4 text-dark">Hot</h4>
+            <div class="col-md-12">
+                <div class="d-flex flex-wrap row-gap-3">
+                    @foreach ($menu_hot as $item_hot)
+                        <div class="col-md-2">
+                            <div class="card">
+                                @if ($item_hot->image != '')
+                                    <img src="{{ asset('storage/images/' . $item_hot->image) }}" class="card-img-top"
+                                        height="200" alt="Gambar Produk {{ $item_hot->name }}">
+                                @else
+                                    <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
+                                @endif
+                                <div class="card-body">
+                                    <input type="hidden" value="{{ $item_hot->id }}" name="product_id[]">
+                                    <div class="card-title">{{ $item_hot->name }}</div>
+                                    <div class="card-title fw-bold">Rp {{ number_format($item_hot->price, 0, ',', '.') }}
+                                    </div>
+                                    <div class="d-flex justify-content-between border rounded-2 overflow-hidden mb-3">
+                                        <button type="button" style="max-width: 40px"
+                                            class="w-100 btn btn-light text-center py-2 rounded-0 border-end"
+                                            id="minus-btn">-</button>
+                                        <input name="qty[]" class="w-100 text-center py-2 qty" value="0">
+                                        <button type="button" style="max-width: 40px"
+                                            class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start"
+                                            id="plus-btn">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>    
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
 
-        {{-- Menu Cold --}}
-        <h4 class="fw-bold mx-4 text-dark mt-4">Cold</h4>
-        <div class="col-md-12">
-            <div class="d-flex flex-wrap row-gap-3">
-                @foreach ($menu_cold as $item_cold)
-                    <div class="col-md-2">
-                        <div class="card">
-                            @if ($item_cold->image != '')
-                                <img src="{{ asset('storage/images/' . $item_cold->image) }}" class="card-img-top" height="200" alt="Gambar Produk {{ $item_cold->name }}">
-                            @else
-                                <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
-                            @endif
-                            <div class="card-body">
-                            <div class="card-title">{{ $item_cold->name }}</div>
-                            <div class="card-title fw-bold">Rp {{ number_format($item_cold->price, 0, ',', '.') }}</div>
-                            <div class="d-flex justify-content-between border rounded-2 overflow-hidden mb-3">
-                                <button type="button" style="max-width: 40px" class="w-100 btn btn-light text-center py-2 rounded-0 border-end">-</button>
-                                <div class="w-100 text-center py-2">1</div>
-                                <button type="button" style="max-width: 40px" class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start">+</button>
-                            </div>
-                            <button type="submit" class="btn btn-block btn-primary">Tambah</button>
+            {{-- Menu Cold --}}
+            <h4 class="fw-bold mx-4 text-dark mt-4">Cold</h4>
+            <div class="col-md-12">
+                <div class="d-flex flex-wrap row-gap-3">
+                    @foreach ($menu_cold as $item_cold)
+                        <div class="col-md-2">
+                            <div class="card">
+                                @if ($item_cold->image != '')
+                                    <img src="{{ asset('storage/images/' . $item_cold->image) }}" class="card-img-top"
+                                        height="200" alt="Gambar Produk {{ $item_cold->name }}">
+                                @else
+                                    <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
+                                @endif
+                                <div class="card-body">
+                                    <input type="hidden" value="{{ $item_cold->id }}" name="product_id[]">
+                                    <div class="card-title">{{ $item_cold->name }}</div>
+                                    <div class="card-title fw-bold">Rp {{ number_format($item_cold->price, 0, ',', '.') }}
+                                    </div>
+                                    <div class="d-flex justify-content-between border rounded-2 overflow-hidden mb-3">
+                                        <button type="button" style="max-width: 40px"
+                                            class="w-100 btn btn-light text-center py-2 rounded-0 border-end"
+                                            id="minus-btn">-</button>
+                                        <input name="qty[]" class="w-100 text-center py-2 qty" value="0">
+                                        <button type="button" style="max-width: 40px"
+                                            class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start"
+                                            id="plus-btn">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>    
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
 
-        {{-- Menu Snack --}}
-        <h4 class="fw-bold mx-4 text-dark mt-4">Snack</h4>
-        <div class="col-md-12">
-            <div class="d-flex flex-wrap row-gap-3">
-                @foreach ($menu_snack as $item_snack)
-                    <div class="col-md-2">
-                        <div class="card">
-                            @if ($item_snack->image != '')
-                                <img src="{{ asset('storage/images/' . $item_snack->image) }}" class="card-img-top" height="200" alt="Gambar Produk {{ $item_snack->name }}">
-                            @else
-                                <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
-                            @endif
-                            <div class="card-body">
-                            <div class="card-title">{{ $item_snack->name }}</div>
-                            <div class="card-title fw-bold">Rp {{ number_format($item_snack->price, 0, ',', '.') }}</div>
-                            <div class="d-flex justify-content-between border rounded-2 overflow-hidden mb-3">
-                                <button type="button" style="max-width: 40px" class="w-100 btn btn-light text-center py-2 rounded-0 border-end">-</button>
-                                <div class="w-100 text-center py-2">1</div>
-                                <button type="button" style="max-width: 40px" class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start">+</button>
-                            </div>
-                            <button type="submit" class="btn btn-block btn-primary">Tambah</button>
+
+            {{-- Menu Snack --}}
+            <h4 class="fw-bold mx-4 text-dark mt-4">Snack</h4>
+            <div class="col-md-12">
+                <div class="d-flex flex-wrap row-gap-3">
+                    @foreach ($menu_snack as $item_snack)
+                        <div class="col-md-2">
+                            <div class="card product">
+                                @if ($item_snack->image != '')
+                                    <img src="{{ asset('storage/images/' . $item_snack->image) }}" class="card-img-top"
+                                        height="200" alt="Gambar Produk {{ $item_snack->name }}">
+                                @else
+                                    <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
+                                @endif
+                                <div class="card-body">
+                                    <input type="hidden" value="{{ $item_snack->id }}" name="product_id[]">
+                                    <div class="card-title">{{ $item_snack->name }}</div>
+                                    <div class="card-title fw-bold price" id="price">
+                                        {{ number_format($item_snack->price, 0, ',', '.') }}
+                                    </div>
+                                    <div class="d-flex justify-content-between border rounded-2 overflow-hidden mb-3">
+                                        <button type="button" style="max-width: 40px"
+                                            class="w-100 btn btn-light text-center py-2 rounded-0 border-end"
+                                            id="minus-btn">-</button>
+                                        <input name="qty[]" class="w-100 text-center py-2 qty"
+                                            value="0">
+                                        <button type="button" style="max-width: 40px"
+                                            class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start"
+                                            id="plus-btn">+</button>
+                                    </div>
+                                    <input name="subtotal[]" class="w-100 text-center py-2 subtotal"
+                                        value="0">
+                                </div>
                             </div>
                         </div>
-                    </div>    
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
+            <button type="submit" class="btn btn-block btn-primary" id="order">Order</button>
+        </form>
     </div>
+
 @endsection

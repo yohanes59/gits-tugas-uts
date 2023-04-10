@@ -10,3 +10,4 @@
     <script src="{{ asset('sb-admin/js/sb-admin-2.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/imgPreview.js') }}"></script>
+    <script src="{{ asset('assets/js/spinner.js') }}"></script>
