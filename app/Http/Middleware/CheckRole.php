@@ -20,5 +20,7 @@ class CheckRole
         if(Auth::check() && Auth::user()->role == 'Admin') {
             return redirect('/admin/dashboard');
         }
+
+        return $next($request);
     }
 }
