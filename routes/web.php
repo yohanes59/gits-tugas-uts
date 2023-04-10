@@ -33,13 +33,13 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('AdminOnly');
         Route::resource('/category', CategoryController::class);
         Route::resource('/product', ProductController::class);
         Route::resource('/transaction', TransactionController::class);
         Route::resource('/detail-transaction', DetailTransactionController::class);
 
         Route::controller(DashboardController::class)->group(function () {
+            Route::get('/dashboard', 'index')->middleware('AdminOnly');
             Route::get('/cashier-account', 'account');
         });
     });
