@@ -46,8 +46,8 @@
 
     <!-- kasir -->
     @if (auth()->user()->role == 'Kasir')
-        <li class="nav-item {{ request()->is('cashier/cart') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ url('cashier/cart') }}">
+        <li class="nav-item {{ request()->is('cashier/order') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ url('cashier/order') }}">
                 <i class="fa-solid fa-fw fa-cash-register"></i>
                 <span>Cashier</span></a>
         </li>

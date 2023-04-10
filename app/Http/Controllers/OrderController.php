@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $data['menu_hot'] = Product::with('category')->where('category_id', '1')->get();
+        $data['menu_cold'] = Product::with('category')->where('category_id', '2')->get();
+        $data['menu_snack'] = Product::with('category')->where('category_id', '3')->get();
+        return view('cashier.pos.index', $data);
     }
 
     /**
