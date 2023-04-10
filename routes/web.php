@@ -33,20 +33,20 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::resource('/category', CategoryController::class);
-        Route::resource('/product', ProductController::class);
-        Route::resource('/transaction', TransactionController::class);
-        Route::resource('/detail-transaction', DetailTransactionController::class);
+        Route::resource('/category', CategoryController::class)->middleware('AdminOnly');
+        Route::resource('/product', ProductController::class)->middleware('AdminOnly');
+        Route::resource('/transaction', TransactionController::class)->middleware(('AdminOnly'));
+        Route::resource('/detail-transaction', DetailTransactionController::class)->middleware('AdminOnly');
 
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index')->middleware('AdminOnly');
-            Route::get('/cashier-account', 'account');
+            Route::get('/cashier-account', 'account')->middleware('AdminOnly');
         });
     });
 
     Route::prefix('/cashier')->group(function () {
-        Route::resource('/cart', CartController::class);
-        Route::resource('/order', OrderController::class);
+        Route::resource('/cart', CartController::class)->middleware('CheckRole');
+        Route::resource('/order', OrderController::class)->middleware('CheckRole');
     });
 });
 
