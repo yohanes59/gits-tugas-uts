@@ -54,7 +54,7 @@ class AuthController extends Controller
 		if (Auth::user()->name == 'admin') {
 			return redirect('/admin/dashboard');
 		} else {
-			return redirect('/cashier/order');
+			return redirect('/cashier/cart');
 		}
 	}
 
