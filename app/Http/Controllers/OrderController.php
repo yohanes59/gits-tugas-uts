@@ -2,88 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data['menu_hot'] = Product::with('category')->where('category_id', '1')->get();
-        $data['menu_cold'] = Product::with('category')->where('category_id', '2')->get();
-        $data['menu_snack'] = Product::with('category')->where('category_id', '3')->get();
-        return view('cashier.pos.index', $data);
+        $product = Product::with('category')->get();
+        return view('cashier.pos.index', ['produk' => $product]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $productIds = $request->product_id;
+        $qtys = $request->qty;
+        $total = 0;
+        $grandtotal = 0;
+        $cart = $request->session()->get('cart', []);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
+        foreach ($productIds as $key => $productId) {
+            $qty = $qtys[$key];
+            if ($qty > 0) {
+                $product = Product::find($productId);
+                $price = $product->price;
+                $total = $price * $qty;
+                $grandtotal += $total;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
+                $existingCartItemIndex = collect($cart)->search(function ($item) use ($productId) {
+                    return $item['product_id'] == $productId;
+                });
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
+                if ($existingCartItemIndex !== false) {
+                    $existingCartItem = $cart[$existingCartItemIndex];
+                    // jika product_id sudah ada, qty & total lama + qty & total baru
+                    $existingCartItem['quantity'] += $qty;
+                    $existingCartItem['total'] += $total;
+                    $cart[$existingCartItemIndex] = $existingCartItem;
+                } else {
+                    $newDataCart = [
+                        'product_id' => $productId,
+                        'quantity' => $qty,
+                        'total' => $total,
+                    ];
+                    $cart[] = $newDataCart;
+                }
+            }
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+        $request->session()->put('cart', $cart);
+
+        return redirect('/cashier/cart');
     }
 }

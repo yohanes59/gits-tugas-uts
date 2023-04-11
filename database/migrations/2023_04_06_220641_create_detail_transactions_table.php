@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('detail_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaction_id')->nullable();
-            $table->foreign('transaction_id')->references('id')->on('transactions')->nullOnDelete();
-            $table->string('product_name', 50);
-            $table->integer('quantity')->default(1);
-            $table->unsignedInteger('price')->default(0);
-            $table->unsignedInteger('subtotal')->default(0);
+            $table->foreignId('transaction_id');
+            $table->foreign('transaction_id')->references('id')->on('transactions')->cascadeOnDelete();
+            $table->foreignId('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
+            $table->integer('quantity');
+            $table->unsignedInteger('total')->default(0);
             $table->timestamps();
         });
     }

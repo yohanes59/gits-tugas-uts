@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\DetailTransaction;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -22,7 +23,8 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function carts() {
-        return $this->hasMany(Cart::class);
+    public function detailtransaction()
+    {
+        return $this->hasMany(DetailTransaction::class, 'product_id');
     }
 }

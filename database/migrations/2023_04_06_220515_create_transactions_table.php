@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
-            $table->foreignId('total')->default(0);
+            $table->foreignId('grandtotal')->default(0);
             $table->timestamps();
         });
     }
