@@ -35,7 +35,7 @@ STACK yang Digunakan :
    php artisan db:seed
    ```
 
-8. Run server
+8.Run server
    ```console
    php artisan serve
    ```
