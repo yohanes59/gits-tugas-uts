@@ -13,4 +13,9 @@ class Transaction extends Model
         'user_id',
         'grandtotal',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
