@@ -10,13 +10,13 @@ STACK yang Digunakan :
 ## Installation
 1.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
 
-2. Clone Repo
+2.Clone Repo
     ```console
     git clone https://github.com/yohanes59/tugas-uts
     ```
-3.	sesuaikan nama database pada file .env pada bagian DB_DATABASE sesuai dengan nama pada database mysql anda
+3.sesuaikan nama database pada file .env pada bagian DB_DATABASE sesuai dengan nama pada database mysql anda
 
-4. install library 
+4.install library 
  ```console
   composer install
    ```
