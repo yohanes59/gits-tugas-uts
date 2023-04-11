@@ -11,11 +11,10 @@
         </div>
     @endif
 
-    id: {{ Auth::user()->id }} | {{ Auth::user()->name }}
     <div class="mt-3 mb-5">
         <div class="d-flex justify-content-between mb-3">
             <div class="fs-5">Pilih produk</div>
-            <a href="#" class="d-flex align-items-center gap-2 fs-5">
+            <a href="{{ url('/cashier/cart') }}" class="d-flex align-items-center gap-2 fs-5">
                 <div class="fs-6">Cart</div>
                 <div>
                     <i class="fa-solid fa-cart-shopping"></i>
@@ -23,7 +22,7 @@
             </a>
         </div>
 
-        <form action="{{ url('/cashier/cart') }}" method="POST">
+        <form action="{{ url('/cashier/order') }}" method="POST">
             @csrf
             {{-- tampilan primitif --}}
             @foreach ($produk->groupBy('category.name') as $category => $items)
