@@ -14,6 +14,7 @@ STACK yang Digunakan :
     ```console
     git clone https://github.com/yohanes59/tugas-uts
     ```
+   
 3.sesuaikan nama database pada file .env pada bagian DB_DATABASE sesuai dengan nama pada database mysql anda
 
 4.install library 
