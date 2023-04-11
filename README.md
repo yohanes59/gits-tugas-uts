@@ -1,10 +1,11 @@
-- Nama : Yoga Aditya Nugraha 
-- Asal : Universitas Nasional
+Kelompok 11
 
 STACK yang Digunakan :
 
-- Laravel V.9 
-- Bootstrap Admin Tamplate
+- Laravel 9
+- Bootstrap
+- Guzzle (For Seeder image from url)
+
 
 ## Installation
 1.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
