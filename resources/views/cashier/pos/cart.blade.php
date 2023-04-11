@@ -12,6 +12,12 @@
          nama produk : {{ $products->where('id', $item['product_id'])->first()->name }} <br>
          jumlah : {{ $item['quantity'] }} <br>
          total : {{ $item['total'] }}
-         <br><br>
+         <br>
+         <form action="{{ url('/cashier/cart/' . $item['product_id']) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" onclick="return confirm('Yakin Ingin Menghapus Data Ini?')">DELETE</button>
+         </form>
+         <br>
     @endforeach
 @endsection

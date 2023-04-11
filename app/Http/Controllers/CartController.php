@@ -82,8 +82,19 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy(Request $request, $productId)
     {
-        //
+        $cart = $request->session()->get('cart', []);
+
+        $itemIndex = collect($cart)->search(function ($item) use ($productId) {
+            return $item['product_id'] == $productId;
+        });
+
+        if ($itemIndex !== false) {
+            array_splice($cart, $itemIndex, 1);
+            $request->session()->put('cart', $cart);
+        }
+
+        return redirect('/cashier/cart');
     }
 }
