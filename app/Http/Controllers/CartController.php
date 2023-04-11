@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -12,9 +13,12 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('cashier.pos.index');
+        $cart = $request->session()->get('cart', []);
+        $productIds = collect($cart)->pluck('product_id');
+        $products = Product::whereIn('id', $productIds)->get();
+        return view('cashier.pos.cart', ['keranjang' => $cart, 'products' => $products]);
     }
 
     /**
