@@ -42,14 +42,12 @@
                 <i class="fa-solid fa-fw fa-boxes-stacked"></i>
                 <span>Product</span></a>
         </li>
-    @endif
 
-    <!-- kasir -->
-    @if (auth()->user()->role == 'Kasir')
-        <li class="nav-item {{ request()->is('cashier/order') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ url('cashier/order') }}">
-                <i class="fa-solid fa-fw fa-cash-register"></i>
-                <span>Cashier</span></a>
+        <!-- account-cashier -->
+        <li class="nav-item {{ request()->is('admin/cashier-account') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ url('admin/cashier-account') }}">
+                <i class="fa-solid fa fa-id-card"></i>
+                <span>Akun Kasir</span></a>
         </li>
     @endif
 
