@@ -113,7 +113,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="return confirm('Apakah Anda Ingin Menyelesaikan Transaksi ini?')">Bayar</button>
+                                <button type="submit" id="bayar-btn" disabled class="btn btn-primary btn-lg btn-block" onclick="return confirm('Apakah Anda Ingin Menyelesaikan Transaksi ini?')">Bayar</button>
                             </form>
                         </div>
                     </div>
