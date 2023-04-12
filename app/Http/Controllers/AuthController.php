@@ -16,7 +16,9 @@ class AuthController extends Controller
 {
 	public function register()
 	{
-		return view('auth/register');
+		$user = User::get();
+
+		return view('auth/register',['users' => $user]);
 	}
 
 	public function doRegister(AuthRequest $request)
@@ -69,19 +71,20 @@ class AuthController extends Controller
 
 	public function edit($id)
 	{
-		$auth = User::findOrFail($id);
-		// kurang tampilan untuk edit akun kasir dan routenya
-		// return view('admin.category.edit', ['kategori' => $category]);
+		$user = User::find($id)->first();
+		
+		return view('admin.account.edit', ['users' => $user]);
 	}
 
 	public function update(Request $request, $id)
 	{
-		// kurang tampilan untuk edit akun kasir dan routenya
-
+		// kurang route update
 	}
 
-	public function destroy()
+	public function destroy($id)
 	{
-		// kurang route delete
+		$user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/admin/cashier-account')->with('alert', 'Berhasil menghapus akun');
 	}
 }

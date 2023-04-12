@@ -22,8 +22,6 @@ use App\Http\Controllers\DetailTransactionController;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/admin/register', 'register')->name('register');
-    Route::post('/register', 'doRegister')->name('do.register');
     Route::get('/login', 'login')->name('login')->middleware('isLogin');
     Route::post('/login', 'doLogin')->name('do.login');
     Route::get('/logout', 'logout')->name('logout');
@@ -50,5 +48,9 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/admin/register', 'register')->name('register');
+    Route::post('/register', 'doRegister')->name('do.register');
+});
+
 Route::redirect('/', '/login');
-Route::redirect('/register', '/login');
