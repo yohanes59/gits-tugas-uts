@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/cashier')->group(function () {
         Route::resource('/cart', CartController::class)->middleware('CheckRole');
         Route::resource('/order', OrderController::class)->middleware('CheckRole');
+        Route::post('/checkout', [CartController::class, 'insertData'])->name('checkout');
     });
 });
 
