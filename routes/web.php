@@ -22,6 +22,7 @@ use App\Http\Controllers\DetailTransactionController;
 */
 
 Route::controller(AuthController::class)->group(function () {
+    // Register Error pindah kebawah 
     Route::get('/login', 'login')->name('login')->middleware('isLogin');
     Route::post('/login', 'doLogin')->name('do.login');
     Route::get('/logout', 'logout')->name('logout');
