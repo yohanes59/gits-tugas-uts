@@ -3,83 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailTransaction;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class DetailTransactionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\DetailTransaction  $detailTransaction
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        return view('admin.transaction.detail');
-    }
+        // ambil id ketika klik tombol
+        $transaction = Transaction::findOrFail($id);
+        $transactionID = $transaction->id;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DetailTransaction  $detailTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DetailTransaction $detailTransaction)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DetailTransaction  $detailTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, DetailTransaction $detailTransaction)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\DetailTransaction  $detailTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(DetailTransaction $detailTransaction)
-    {
-        //
+        // cari data detail transaksi sesuai dengan transaction_id
+        $dataDetailTransaction = DetailTransaction::with('product.category')->where('transaction_id', $transactionID)->get();
+        return view('admin.transaction.detail', ['detail' => $dataDetailTransaction]);
     }
 }
