@@ -21,7 +21,7 @@
                             @endphp
                             @forelse ($keranjang as $item)
                                 <div class="row py-2">
-                                    <div class="col-lg-2 col-md-12 mb-4 mb-lg-0">
+                                    <div class="col-md-2 mb-4 mb-lg-0">
                                         <div class="bg-image hover-overlay hover-zoom ripple rounded"
                                             data-mdb-ripple-color="light">
                                             <img src="{{ asset('storage/images/' . $products->where('id', $item['product_id'])->first()->image) }}"
@@ -29,12 +29,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                        <p><strong>{{ $products->where('id', $item['product_id'])->first()->name }}</strong>
-                                        </p>
+                                    <div class="col-md-4 mb-4 mb-lg-0">
+                                        <div>Nama Produk</div>
+                                        <p class="mt-2"><strong>{{ $products->where('id', $item['product_id'])->first()->name }}</strong></p>
                                     </div>
 
-                                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                    <div class="col-md-4 mb-4 mb-lg-0">
                                         <!-- Quantity -->
                                         <div class="d-flex mb-4 gap-3" style="max-width: 300px">
                                             <div class="form-outline">
@@ -49,6 +49,19 @@
                                                     value="{{ $item['total'] }}" type="number" class="form-control"
                                                     readonly />
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 mb-4 mb-lg-0">
+                                        <div class="text-center">Action</div>
+                                        <div class="pt-2 d-flex justify-content-center">
+                                            <form action="{{ url('/cashier/cart/' . $item['product_id']) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('Yakin Ingin Menghapus Data Ini?')" class="btn text-danger">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
