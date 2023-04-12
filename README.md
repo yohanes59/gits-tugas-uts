@@ -11,6 +11,7 @@ STACK yang Digunakan :
 1.Clone Repo
     ```console
     git clone https://github.com/yohanes59/tugas-uts
+    ```
 
 2.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
    
