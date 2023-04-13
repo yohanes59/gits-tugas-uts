@@ -8,19 +8,19 @@ STACK yang Digunakan :
 
 ## Installation
 1. Clone Repo
-  ```console
+   ```console
    git clone https://github.com/yohanes59/tugas-uts
    ```
 2. Buat file .env dengan perintah
-```console
-cp .env.example .env
-```
+   ```console
+   cp .env.example .env
+   ```
 3. buat kunci aplikasi 
    ```console
    php artisan key:generate
    ```
 4. Run
-```console
+   ```console
    composer install
    ```
 5. migrate tabel
@@ -31,7 +31,7 @@ cp .env.example .env
    ```
 6. koneksikan storage ke folder public
    ```console
-  php artisan storage:link
+   php artisan storage:link
    ```
 7. generate data dummy
    ```console
