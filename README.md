@@ -7,37 +7,39 @@ STACK yang Digunakan :
 - Guzzle (For Seeder image from url)
 
 ## Installation
-1.Clone Repo
-   ```console
-    git clone https://github.com/yohanes59/tugas-uts
-    ```
-2.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
-   
-3.sesuaikan nama database pada file .env pada bagian DB_DATABASE sesuai dengan nama pada database mysql anda
+1.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
 
-4.install library 
+2. Clone Repo
+    ```console
+    git clone https://github.com/yoga-nditya/Tugas_6-CMS.git
+    ```
+3. Run
  ```console
   composer install
    ```
-5.Generate Key 
+ 4.buat kunci aplikasi 
    ```console
    php artisan key:generate
    ```
-6.migrate tabel mysql 
+ 5.migrate tabel
    ```console
    php artisan migrate
    or
    php artisan migrate:refresh
    ```
-7.generate data dummy 
-   ```console
-   php artisan storage:link
-   ```
-8.generate data dummy 
+6.generate data dummy
    ```console
    php artisan db:seed
    ```
-9.Run server
+7.koneksikan storage ke folder public
+   ```console
+   php artisan db:seed
+   ```
+8.generate data dummy
+   ```console
+   php artisan db:seed
+   ```
+9. Run server
    ```console
    php artisan serve
    ```
