@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use session;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
         $product = Product::with('category')->get();
         return view('cashier.pos.index', ['produk' => $product]);
     }
