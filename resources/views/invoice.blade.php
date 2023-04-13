@@ -159,7 +159,7 @@
 <body>
     <header class="clearfix">
         <div id="logo">
-            {{-- <img src="{{ asset('img/coffee.png') }}"> --}}
+            <img src="{{ asset('img/coffee.png') }}">
         </div>
         <h1>INVOICE #{{ $transaction->id }}</h1>
         <div id="company" class="clearfix">
@@ -175,7 +175,6 @@
         <table>
             <thead>
                 <tr>
-                    <th class="service">CATEGORY</th>
                     <th class="desc">PRODUCT NAME</th>
                     <th>PRICE</th>
                     <th>QTY</th>
@@ -186,7 +185,6 @@
                 <!-- product -->
                 @foreach ($cart as $item)
                     <tr>
-                        <td class="service">Hot</td>
                         <td class="desc">{{ App\Models\Product::find($item['product_id'])->name }}</td>
                         <td class="unit">Rp {{ number_format(App\Models\Product::find($item['product_id'])->price) }}
                         </td>
