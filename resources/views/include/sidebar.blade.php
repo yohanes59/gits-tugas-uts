@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion z-3" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <div class="sidebar-brand d-flex align-items-center justify-content-center">
@@ -56,6 +56,15 @@
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
+    @endif
+
+    <!-- kasir -->
+    @if (auth()->user()->role == 'Kasir')
+        <li class="nav-item {{ request()->is('cashier/order') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ url('cashier/order') }}">
+                <i class="fa-solid fa-fw fa-cash-register"></i>
+                <span>Cashier</span></a>
+        </li>
     @endif
 
 
