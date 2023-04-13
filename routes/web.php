@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::get('/admin/register', 'register')->name('register');
     Route::post('/register', 'doRegister')->name('do.register');
+    Route::post('/admin/cashier-account/edit{id}','edit');
 });
 
 Route::redirect('/', '/login');
