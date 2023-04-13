@@ -33,7 +33,7 @@ STACK yang Digunakan :
    ```
 7.koneksikan storage ke folder public
    ```console
-   php artisan db:seed
+  php artisan storage:link
    ```
 8.generate data dummy
    ```console
