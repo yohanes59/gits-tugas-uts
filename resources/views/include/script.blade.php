@@ -11,3 +11,4 @@
 
     <script src="{{ asset('assets/js/imgPreview.js') }}"></script>
     <script src="{{ asset('assets/js/spinner.js') }}"></script>
+    <script src="{{ asset('assets/js/paymentCalculate.js') }}"></script>

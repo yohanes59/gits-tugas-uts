@@ -11,7 +11,7 @@
     </div>
 
     <div class="mt-4">
-        <div class="fs-5 fw-medium">Transaction ID : TxID001</div>
+        <div class="fs-5 fw-medium">Transaction ID : {{ $detail[0]['transaction_id'] }}</div>
 
         <div class="table-responsive mt-3">
             <table class="table table-hover border">
@@ -25,21 +25,15 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white">
-                    {{-- data statis --}}
-                    <tr>
-                        <td class="py-3 align-middle">Capucino</td>
-                        <td class="py-3 align-middle">Cold</td>
-                        <td class="py-3 align-middle">2</td>
-                        <td class="py-3 align-middle">Rp 23.000</td>
-                        <td class="py-3 align-middle">Rp 46.000</td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 align-middle">Americano</td>
-                        <td class="py-3 align-middle">Hot</td>
-                        <td class="py-3 align-middle">1</td>
-                        <td class="py-3 align-middle">Rp 15.000</td>
-                        <td class="py-3 align-middle">Rp 15.000</td>
-                    </tr>
+                    @foreach ($detail as $item)
+                        <tr>
+                            <td class="py-3 align-middle">{{ $item->product->name }}</td>
+                            <td class="py-3 align-middle">{{ $item->product->category->name }}</td>
+                            <td class="py-3 align-middle">{{ $item->quantity }}</td>
+                            <td class="py-3 align-middle">Rp {{ number_format($item->product->price, 0, ',', '.') }}</td>
+                            <td class="py-3 align-middle">Rp {{ number_format($item->total, 0, ',', '.') }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -8,12 +8,12 @@ STACK yang Digunakan :
 
 
 ## Installation
-1.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
-
-2.Clone Repo
+1.Clone Repo
     ```console
     git clone https://github.com/yohanes59/tugas-uts
     ```
+
+2.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
    
 3.sesuaikan nama database pada file .env pada bagian DB_DATABASE sesuai dengan nama pada database mysql anda
 

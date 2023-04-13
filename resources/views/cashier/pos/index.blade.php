@@ -12,7 +12,7 @@
     @endif
 
     <div class="mt-3 mb-5">
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex justify-content-between mx-3 mb-3">
             <div class="fs-5">Pilih produk</div>
             <a href="{{ url('/cashier/cart') }}" class="d-flex align-items-center gap-2 fs-5">
                 <div class="fs-6">Cart</div>
@@ -22,12 +22,11 @@
             </a>
         </div>
 
-        <form action="{{ url('/cashier/order') }}" method="POST">
+        <form action="{{ url('/cashier/order') }}" method="POST" class="pb-5">
             @csrf
-            {{-- tampilan primitif --}}
             @foreach ($produk->groupBy('category.name') as $category => $items)
-                <h4 class="fw-bold mx-4 text-dark my-3">{{ $category }}</h4>
-                <div class="col-md-12">
+                <div class="col-md-12 mx-3">
+                    <h4 class="fw-bold ml-2 text-dark my-3">{{ $category }}</h4>
                     <div class="d-flex flex-wrap row-gap-3">
                         @foreach ($items as $item)
                             <div class="col-md-2">
@@ -47,7 +46,7 @@
                                             <button type="button" style="max-width: 40px"
                                                 class="w-100 btn btn-light text-center py-2 rounded-0 border-end"
                                                 id="minus-btn">-</button>
-                                            <input name="qty[]" class="w-100 text-center py-2 qty" value="0">
+                                            <input name="qty[]" class="w-100 text-center py-2 border-0 qty" value="0">
                                             <button type="button" style="max-width: 40px"
                                                 class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start"
                                                 id="plus-btn">+</button>
@@ -60,7 +59,13 @@
                 </div>
             @endforeach
 
-            <button type="submit" class="btn btn-block btn-primary" id="order">Order</button>
+            <div class="fixed-bottom ms-5">
+                <div class="ps-5 py-3 bg-white shadow" style="margin-left: 147px">
+                    <div class="pe-5">
+                        <button type="submit" class="btn btn-block btn-primary shadow-lg" id="order">Order</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 
