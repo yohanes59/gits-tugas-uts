@@ -10,12 +10,12 @@ STACK yang Digunakan :
 1.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
 
 2.Clone Repo
-    ```console
-    git clone https://github.com/yoga-nditya/Tugas_6-CMS.git
-    ```
+  ```console
+   git clone https://github.com/yohanes59/tugas-uts
+   ```
 3.Run
  ```console
-  composer install
+   composer install
    ```
  4.buat kunci aplikasi 
    ```console
