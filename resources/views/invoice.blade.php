@@ -19,8 +19,8 @@
 
         body {
             position: relative;
-            width: 21cm;
-            height: 29.7cm;
+            width: 17cm;
+            height: 27cm;
             margin: 0 auto;
             color: #001028;
             background: #FFFFFF;
@@ -52,7 +52,6 @@
             font-weight: normal;
             text-align: center;
             margin: 0 0 20px 0;
-            background: url(dimension.png);
         }
 
         #project {
@@ -137,6 +136,13 @@
             border-left: 4px solid #0087C3;
         }
 
+        .total {
+            font-weight: bold;
+            font-size: 16px;
+            text-align: right;
+            margin-top: 20px;
+        }
+
         footer {
             color: #5D6975;
             width: 100%;
@@ -153,11 +159,11 @@
 <body>
     <header class="clearfix">
         <div id="logo">
-            <img src="coffee.png">
+            {{-- <img src="{{ asset('img/coffee.png') }}"> --}}
         </div>
-        <h1>INVOICE #123</h1>
+        <h1>INVOICE #{{ $transaction->id }}</h1>
         <div id="company" class="clearfix">
-            <div>Nama Kelompok 11</div>
+            <div>Kelompok 11</div>
         </div>
         <div id="project">
             <div><span>PROJECT</span> Website POS - Coffee Shop</div>
@@ -187,14 +193,13 @@
                         <td class="qty">{{ $item['quantity'] }}</td>
                         <td class="total">Rp {{ number_format($item['total']) }}</td>
                     </tr>
-
-                    <tr>
-                        <td colspan="4" class="grand total">GRAND TOTAL</td>
-                        <td class="grand total">Rp {{ number_format($transaction->grandtotal) }}</td>
-                    </tr>
                 @endforeach
             </tbody>
         </table>
+        <div>
+            <div class="grand total">GRAND TOTAL</div>
+            <div class="grand total">Rp {{ number_format($transaction->grandtotal) }}</div>
+        </div>
         <div id="thanks">Thank you for your order!</div>
     </main>
     <footer>
