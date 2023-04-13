@@ -65,10 +65,8 @@ class CartController extends Controller
         $file_name = 'invoice_' . $transaction->id . '.pdf';
         Storage::makeDirectory('public/invoices');
         $pdf->save(storage_path('app/public/invoices/' . $file_name));
-
-        response()->download(storage_path('app/public/invoices/' . $file_name));
-        
         $request->session()->forget('cart');
+        response()->download(storage_path('app/public/invoices/' . $file_name));
         return redirect('/cashier/order')->with('alert', 'Transaksi berhasil');
     }
 }
