@@ -23,4 +23,30 @@ class DashboardController extends Controller
         $kasir = User::where('name', '!=', 'admin')->get();
         return view('admin.account.index', ['kasir' => $kasir]);
     }
+
+    public function edit($id)
+	{
+		$user = User::findOrFail($id);
+		
+		return view('admin.account.edit', ['users' => $user]);
+	}
+
+    public function update(Request $request, $id)
+	{
+        
+		$user = [
+			'name' => $request->name
+		];
+
+		User::find($id)->update($user);
+
+		return redirect('/admin/cashier-account/edit/'.$id)->with('alert','Berhasil Update data');
+	}
+
+    public function destroy($id)
+	{
+		$user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/admin/cashier-account')->with('alert', 'Berhasil menghapus akun');
+	}
 }

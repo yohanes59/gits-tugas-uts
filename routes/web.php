@@ -40,20 +40,26 @@ Route::middleware('auth')->group(function () {
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index')->middleware('AdminOnly');
             Route::get('/cashier-account', 'account')->middleware('AdminOnly');
+            Route::get('/cashier-account/edit/{id}', 'edit')->name('edit-cashier.view')->middleware('AdminOnly');
+            
+            Route::post('/cashier-account/edit/{id}', 'update')->middleware('AdminOnly');
+            Route::post('/cashier-account/delete/{id}', 'destroy')->middleware('AdminOnly');
         });
     });
-
+    
     Route::prefix('/cashier')->group(function () {
         Route::resource('/cart', CartController::class)->middleware('CheckRole');
         Route::resource('/order', OrderController::class)->middleware('CheckRole');
         Route::post('/checkout', [CartController::class, 'insertData'])->name('checkout');
+        
+        Route::get('/profile/{id}', [AuthController::class, 'edit'])->middleware('CheckRole');
+        Route::post('/profile/{id}', [AuthController::class, 'update'])->middleware('CheckRole');
     });
 });
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/admin/register', 'register')->name('register');
     Route::post('/register', 'doRegister')->name('do.register');
-    Route::get('/admin/dashboard/edit{id}','edit');
 });
 
 Route::redirect('/', '/login');

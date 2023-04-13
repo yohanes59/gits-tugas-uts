@@ -59,7 +59,7 @@ class CartController extends Controller
 
         $request->session()->forget('cart');
 
-        return redirect('/cashier/order');
+        return redirect('/cashier/order')->with('alert', 'Transaksi berhasil');
         
         // pakai session message?
         // return redirect('/cashier/order')->with('success', 'Transaksi berhasil');

@@ -71,30 +71,20 @@ class AuthController extends Controller
 
 	public function edit($id)
 	{
-		$user = User::find($id)->first();
+		$user = User::findOrFail($id);
 		
-		return view('admin.account.edit', ['users' => $user]);
+		return view('cashier.profile.index', ['users' => $user]);
 	}
 
 	public function update(Request $request, $id)
 	{
-		// kurang route update
+        
 		$user = [
-			'name' => $request->name,
-			'password' => bcrypt($request->password),
-			'email' => $request->email
+			'name' => $request->name
 		];
 
 		User::find($id)->update($user);
 
-		return redirect('/admin/cashier-account')->with('alert','Berhasil Update data');
-	}
-
-	public function destroy($id)
-	{
-		// Kurang Route Delete
-		$user = User::findOrFail($id);
-        $user->delete();
-        return redirect('/admin/cashier-account')->with('alert', 'Berhasil menghapus akun');
+		return redirect('/cashier/profile/'.$id)->with('alert','Berhasil Update data');
 	}
 }

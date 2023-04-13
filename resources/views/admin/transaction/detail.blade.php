@@ -27,9 +27,11 @@
                 <tbody class="bg-white">
                     @foreach ($detail as $item)
                         <tr>
-                            <td class="py-3 align-middle">{{ $item->product->name }}</td>
+                            <td class="py-3 align-middle">
+                                <li>{{ $item->product->name }}</li>
+                            </td>
                             <td class="py-3 align-middle">{{ $item->product->category->name }}</td>
-                            <td class="py-3 align-middle">{{ $item->quantity }}</td>
+                            <td class="py-3 px-4 align-middle">{{ $item->quantity }}</td>
                             <td class="py-3 align-middle">Rp {{ number_format($item->product->price, 0, ',', '.') }}</td>
                             <td class="py-3 align-middle">Rp {{ number_format($item->total, 0, ',', '.') }}</td>
                         </tr>

@@ -31,11 +31,10 @@
                         <td class="py-3 align-middle">{{ $item->name }}</td>
                         <td class="py-3 align-middle">{{ $item->created_at->format('d M Y H:i:s') }}</td>
                         <td class="d-flex py-4 align-middle gap-2">
-                            <a href="/admin/cashier-account/edit/{{ $item->id }}" class="btn btn-sm btn-warning">
+                            <a href="{{ url('/admin/cashier-account/edit/'.$item->id) }}" class="btn btn-sm btn-warning">
                                 <i class="fa-solid fa-edit"></i>
                             </a>
-                            <form action="{{ url('/admin/cashier-account/') }}" method="POST">
-                                @method('DELETE')
+                            <form action="{{ url('/admin/cashier-account/delete/'.$item->id) }}" method="POST">
                                 @csrf
                                 <button class="btn btn-danger btn-sm"
                                     onclick="return confirm('Yakin Ingin Menghapus Data Ini?')">

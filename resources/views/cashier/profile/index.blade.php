@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Kasir')
+@section('title', 'Profile Kasir')
 
 @section('content')
     <div class="d-flex align-items-center gap-3 my-3">
-        <a href="{{ url('admin/cashier-account') }}" class="btn btn-success">
+        <a href="{{ url('cashier/order') }}" class="btn btn-success">
             <i class="fa-solid fa-chevron-left"></i> Kembali
         </a>
         <div class="fs-4">Edit Akun</div>
@@ -20,9 +20,8 @@
 
     <div class="row">
         <div class="col-md-5">
-            <form action="{{ url('/admin/cashier-account/edit/'.$users->id) }}" method="POST">
+            <form action="{{ url('/cashier/profile/'.$users->id) }}" method="POST">
                 @csrf
-                <input type="hidden" name="kasir_id" value="{{ $users->id }}">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <div class="m-0">Ubah data</div>
