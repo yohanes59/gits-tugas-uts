@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetailTransaction;
 use App\Models\Product;
+use Barryvdh\DomPDF\PDF;
 use App\Models\Transaction;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use App\Models\DetailTransaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Session\Session;
 
 class CartController extends Controller
 {
@@ -57,11 +58,16 @@ class CartController extends Controller
             ]);
         }
 
+        // generate invoice
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadview('invoice', compact('transaction', 'cart'));
+        $file_name = 'invoice_' . $transaction->id . '.pdf';
+        $pdf->save(storage_path('app/public/invoices/' . $file_name));
+
+        return response()->download(storage_path('app/public/invoices/' . $file_name));
+        // bug not work
         $request->session()->forget('cart');
 
         return redirect('/cashier/order')->with('alert', 'Transaksi berhasil');
-        
-        // pakai session message?
-        // return redirect('/cashier/order')->with('success', 'Transaksi berhasil');
     }
 }
