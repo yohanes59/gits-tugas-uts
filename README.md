@@ -9,7 +9,7 @@ STACK yang Digunakan :
 
 ## Installation
 1.Clone Repo
-    ```console
+   ```console
     git clone https://github.com/yohanes59/tugas-uts
     ```
 
@@ -33,10 +33,13 @@ STACK yang Digunakan :
    ```
 7.generate data dummy 
    ```console
+   php artisan storage:link
+   ```
+8.generate data dummy 
+   ```console
    php artisan db:seed
    ```
-
-8.Run server
+9.Run server
    ```console
    php artisan serve
    ```
