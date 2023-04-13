@@ -9,11 +9,11 @@ STACK yang Digunakan :
 ## Installation
 1.Pertama-tama, kita perlu membuat file .env = copy .env.example .env
 
-2. Clone Repo
+2.Clone Repo
     ```console
     git clone https://github.com/yoga-nditya/Tugas_6-CMS.git
     ```
-3. Run
+3.Run
  ```console
   composer install
    ```
