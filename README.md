@@ -39,7 +39,7 @@ STACK yang Digunakan :
    ```console
    php artisan db:seed
    ```
-9. Run server
+9.Run server
    ```console
    php artisan serve
    ```
