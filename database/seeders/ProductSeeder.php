@@ -55,6 +55,20 @@ class ProductSeeder extends Seeder
                 'image' => 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80'
             ],
             [
+                'category_id' => '1',
+                'name' => 'Espresso ',
+                'price' => '20000',
+                'description' => 'susu bernoda atau bertanda, yang mengacu pada noda espresso pada susu yang digunakan. Ini adalah plesetan dari "Espresso macchiato". espresso dengan satu atau dua sendok susu atau krim',
+                'image' => 'https://majalah.ottenstatic.com/uploads/2016/09/espresso-013-1024x681.jpg'
+            ],
+            [
+                'category_id' => '1',
+                'name' => 'Long Black',
+                'price' => '20000',
+                'description' => 'komposisi air panas dan espresso dengan takaran 1:2 yang membuat rasa kopinya tetap kuat. Cara penyajian long black ini adalah dengan menambahkan espresso di atas air panas agar dapat menghasilkan crema yang sempurna.',
+                'image' => 'https://i.pinimg.com/474x/54/98/44/5498441f65b44812cad250de4fdaa653.jpg'
+            ],
+            [
                 'category_id' => '2',
                 'name' => 'Americano',
                 'price' => '18000',
@@ -84,10 +98,17 @@ class ProductSeeder extends Seeder
             ],
             [
                 'category_id' => '2',
-                'name' => 'Flat White',
+                'name' => 'Caramell Machiato',
                 'price' => '18000',
-                'description' => 'Flat White adalah dua gelas espresso dengan lapisan microfoam berbuih dari steamed milk. Biasanya, Flat White berwarna putih yang disajikan dalam gelas yang kecil.',
-                'image' => 'https://images.unsplash.com/photo-1523627375495-afa21473c21d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80'
+                'description' => 'jenis kopi satu ini menggunakan lebih banyak susu. Busa dari susu itu pun lebih banyak sehingga menciptakan lapisan latte yang lembut dengan rasa creamy',
+                'image' => 'https://gatherforbread.com/wp-content/uploads/2017/04/Iced-Caramel-Macchiato-16-683x1024-1.jpg'
+            ],
+            [
+                'category_id' => '2',
+                'name' => 'Frappe Blend',
+                'price' => '16000',
+                'description' => 'Frappe powder/base = smooties base, untuk minuman blended, sebagai pengganti ice cream, buat "nutup" rasa es batu yg tawar,Makin banyak esbatu makin banyak frappenya.',
+                'image' => 'https://theurbenlife.com/wp-content/uploads/2022/04/vegan-frappuccino-recipe-with-ice-cream.jpg'
             ],
             [
                 'category_id' => '3',
