@@ -25,11 +25,11 @@
         <form action="{{ url('/cashier/order') }}" method="POST" class="pb-5">
             @csrf
             @foreach ($produk->groupBy('category.name') as $category => $items)
-                <div class="col-md-12 mx-3">
+                <div class="col-12 mx-n1">
                     <h4 class="fw-bold ml-2 text-dark my-3">{{ $category }}</h4>
                     <div class="d-flex flex-wrap row-gap-3">
                         @foreach ($items as $item)
-                            <div class="col-md-2">
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
                                 <div class="card">
                                     @if ($item->image != '')
                                         <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top"
@@ -37,9 +37,9 @@
                                     @else
                                         <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
                                     @endif
-                                    <div class="card-body">
+                                    <div class="card-body mx-n1">
                                         <input type="hidden" value="{{ $item->id }}" name="product_id[]">
-                                        <div class="card-title">{{ $item->name }}</div>
+                                        <div class="card-title text-truncate">{{ $item->name }}</div>
                                         <div class="card-title fw-bold">Rp {{ number_format($item->price, 0, ',', '.') }}
                                         </div>
                                         <div class="d-flex justify-content-between border rounded-2 overflow-hidden mb-3">
@@ -59,7 +59,7 @@
                 </div>
             @endforeach
 
-            <div class="fixed-bottom ms-5">
+            <div class="fixed-bottom ms-5 z-1">
                 <div class="ps-5 py-3 bg-white shadow" style="margin-left: 147px">
                     <div class="pe-5">
                         <button type="submit" class="btn btn-block btn-primary shadow-lg" id="order">Order</button>
