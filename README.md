@@ -48,7 +48,7 @@ STACK yang Digunakan :
         ```
         admin123
         ```
-    - If you want to use user role (can't dashboard access):
+    - If you want to use cashier role (can't dashboard access):
 
         Email: 
         ```
