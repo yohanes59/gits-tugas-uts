@@ -36,3 +36,25 @@ STACK yang Digunakan :
    ```console
    php artisan serve
    ```
+9.  Login with this credential
+
+    - If you want to use admin role (can dashboard access):
+
+        Email: 
+        ```
+        admin@gmail.com
+        ```
+        Password: 
+        ```
+        admin123
+        ```
+    - If you want to use user role (can't dashboard access):
+
+        Email: 
+        ```
+        kasir@gmail.com
+        ```
+        Password: 
+        ```
+        kasir123
+        ```
