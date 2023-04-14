@@ -158,9 +158,9 @@
 
 <body>
     <header class="clearfix">
-        <div id="logo">
+        {{-- <div id="logo">
             <img src="{{ asset('img/coffee.png') }}">
-        </div>
+        </div> --}}
         <h1>INVOICE #{{ $transaction->id }}</h1>
         <div id="company" class="clearfix">
             <div>Kelompok 11</div>
