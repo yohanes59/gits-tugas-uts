@@ -15,27 +15,22 @@ STACK yang Digunakan :
    ```console
    cp .env.example .env
    ```
-3. buat kunci aplikasi 
-   ```console
-   php artisan key:generate
-   ```
+3. sesuaikan nama database pada file .env pada bagian DB_DATABASE sesuai dengan nama pada database mysql anda
 4. Run
    ```console
    composer install
    ```
-5. migrate tabel
+5. buat kunci aplikasi 
    ```console
-   php artisan migrate
-   or
-   php artisan migrate:refresh
+   php artisan key:generate
    ```
-6. koneksikan storage ke folder public
+6. migrate tabel dan isi dengan data seeder
+   ```console
+   php artisan migrate:fresh --seed
+   ```
+7. koneksikan storage ke folder public
    ```console
    php artisan storage:link
-   ```
-7. generate data dummy
-   ```console
-   php artisan db:seed
    ```
 8. Run server
    ```console
