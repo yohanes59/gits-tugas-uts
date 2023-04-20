@@ -59,14 +59,6 @@ class CartController extends Controller
             ]);
         }
 
-        // generate invoice
-        $pdf = app('dompdf.wrapper');
-        $pdf->loadview('invoice', compact('transaction', 'cart'));
-        $file_name = 'invoice_' . $transaction->id . '.pdf';
-        Storage::makeDirectory('public/invoices');
-        $pdf->save(storage_path('app/public/invoices/' . $file_name));
-        $request->session()->forget('cart');
-        response()->download(storage_path('app/public/invoices/' . $file_name));
-        return redirect('/cashier/order')->with('alert', 'Transaksi berhasil');
+        return redirect('/cashier/invoice')->with(['transaction' => $transaction, 'cart' => $cart]);
     }
 }
