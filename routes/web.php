@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DetailTransactionController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/cart', CartController::class)->middleware('CheckRole');
         Route::resource('/order', OrderController::class)->middleware('CheckRole');
         Route::post('/checkout', [CartController::class, 'insertData'])->name('checkout');
+        Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
         
         Route::get('/profile/{id}', [AuthController::class, 'edit'])->middleware('CheckRole');
         Route::post('/profile/{id}', [AuthController::class, 'update'])->middleware('CheckRole');

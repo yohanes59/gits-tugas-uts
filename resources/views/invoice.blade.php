@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Invoice #</title>
+    <title>Invoice #{{ $transaction->id }}</title>
 
     <style type="text/css">
         .clearfix:after {
@@ -154,13 +154,19 @@
             text-align: center;
         }
     </style>
+    <script>
+        window.print();
+        window.onafterprint = function() {
+            window.location.href = '/cashier/order';
+        }
+    </script>
 </head>
 
 <body>
     <header class="clearfix">
-        {{-- <div id="logo">
+        <div id="logo">
             <img src="{{ asset('img/coffee.png') }}">
-        </div> --}}
+        </div>
         <h1>INVOICE #{{ $transaction->id }}</h1>
         <div id="company" class="clearfix">
             <div>Kelompok 11</div>
