@@ -113,7 +113,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <button type="submit" id="bayar-btn" disabled class="btn btn-primary btn-lg btn-block" onclick="return confirm('Apakah Anda Ingin Menyelesaikan Transaksi ini?')">Bayar</button>
+                                <button type="submit" id="bayar-btn" disabled class="btn btn-primary btn-lg btn-block" onclick="payConfirmation()">Bayar</button>
                             </form>
                         </div>
                     </div>
@@ -122,3 +122,11 @@
         </div>
     </section>
 @endsection
+
+<script>
+    function payConfirmation() {
+        if (confirm('Apakah Anda Ingin Menyelesaikan Transaksi ini?')) {
+            window.location.href = '/invoice';
+        }
+    }
+</script>
