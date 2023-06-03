@@ -26,7 +26,7 @@ STACK yang Digunakan :
    ```
 6. migrate tabel dan isi dengan data seeder
    ```console
-   php artisan migrate:fresh --seed
+   php artisan migrate --seed
    ```
 7. koneksikan storage ke folder public
    ```console
