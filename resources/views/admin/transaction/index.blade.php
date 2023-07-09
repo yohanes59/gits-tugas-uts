@@ -9,6 +9,7 @@
         <table class="table table-hover border">
             <thead class="bg-gray-300 text-dark">
                 <tr class="fw-semibold">
+                    <td>Tanggal</td>
                     <td>ID</td>
                     <td>Nama Kasir</td>
                     <td>Total</td>
@@ -18,6 +19,7 @@
             <tbody class="bg-white">
                 @forelse ($transaksi as $item)
                     <tr>
+                        <td class="py-3 align-middle">{{ $item->created_at }}</td>
                         <td class="py-3 align-middle">{{ $item->id }}</td>
                         <td class="py-3 align-middle">{{ $item->users->name }}</td>
                         <td class="py-3 align-middle">Rp {{ number_format($item->grandtotal, 0, ',', '.') }}</td>
