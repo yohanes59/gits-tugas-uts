@@ -19,7 +19,7 @@
             <tbody class="bg-white">
                 @forelse ($transaksi as $item)
                     <tr>
-                        <td class="py-3 align-middle">{{ $item->created_at }}</td>
+                        <td class="py-3 align-middle">{{ $item->created_at->format('d M Y H:i:s') }}</td>
                         <td class="py-3 align-middle">{{ $item->id }}</td>
                         <td class="py-3 align-middle">{{ $item->users->name }}</td>
                         <td class="py-3 align-middle">Rp {{ number_format($item->grandtotal, 0, ',', '.') }}</td>
