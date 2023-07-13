@@ -9,7 +9,7 @@
                 <div class="card-body p-4">
                     <form action="{{ route('do.login') }}" method="POST">
                         @csrf
-                        <h1>Silahkan Login</h1>
+                        <h1 class="text-center">Login</h1>
                         <hr>
                         
                         <div class="input-group mb-3">
