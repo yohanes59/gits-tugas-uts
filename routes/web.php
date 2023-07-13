@@ -35,25 +35,25 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::resource('/category', CategoryController::class)->middleware('AdminOnly');
         Route::resource('/product', ProductController::class)->middleware('AdminOnly');
-        Route::resource('/transaction', TransactionController::class)->middleware(('AdminOnly'));
-        Route::resource('/detail-transaction', DetailTransactionController::class)->middleware('AdminOnly');
+        Route::get('/transaction', [TransactionController::class, 'index'])->middleware(('AdminOnly'));
+        Route::get('/detail-transaction/{id}', [DetailTransactionController::class, 'show'])->middleware('AdminOnly');
 
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index')->middleware('AdminOnly');
             Route::get('/cashier-account', 'account')->middleware('AdminOnly');
             Route::get('/cashier-account/edit/{id}', 'edit')->name('edit-cashier.view')->middleware('AdminOnly');
-            
+
             Route::post('/cashier-account/edit/{id}', 'update')->middleware('AdminOnly');
             Route::post('/cashier-account/delete/{id}', 'destroy')->middleware('AdminOnly');
         });
     });
-    
+
     Route::prefix('/cashier')->group(function () {
         Route::resource('/cart', CartController::class)->middleware('CheckRole');
         Route::resource('/order', OrderController::class)->middleware('CheckRole');
         Route::post('/checkout', [CartController::class, 'insertData'])->name('checkout');
         Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
-        
+
         Route::get('/profile/{id}', [AuthController::class, 'edit'])->middleware('CheckRole');
         Route::post('/profile/{id}', [AuthController::class, 'update'])->middleware('CheckRole');
     });
