@@ -58,6 +58,13 @@
                 <i class="fa-solid fa-fw fa-cash-register"></i>
                 <span>Cashier</span></a>
         </li>
+
+        <!-- daily transaction -->
+        <li class="nav-item {{ request()->is('cashier/transaction') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ url('cashier/transaction') }}">
+                <i class="fa-solid fa-fw fa-money-bills"></i>
+                <span>Daily Transaction</span></a>
+        </li>
     @endif
 
     <li class="nav-item">
