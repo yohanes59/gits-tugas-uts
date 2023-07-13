@@ -11,7 +11,7 @@
 
     <!-- Divider -->
     @if (Auth::check())
-    <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider my-0">
     @endif
 
     <!-- admin - Dashboard -->
@@ -28,7 +28,7 @@
                 <i class="fa-solid fa-fw fa-money-bills"></i>
                 <span>Transaction</span></a>
         </li>
-        
+
         <!-- category -->
         <li class="nav-item {{ request()->is('admin/category') ? 'active' : '' }}">
             <a class="nav-link" href="{{ url('admin/category') }}">
@@ -49,13 +49,6 @@
                 <i class="fa-solid fa fa-id-card"></i>
                 <span>Akun Kasir</span></a>
         </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-    
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
     @endif
 
     <!-- kasir -->
@@ -67,6 +60,17 @@
         </li>
     @endif
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('logout') }}">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
 
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 </ul>
 <!-- End of Sidebar -->
