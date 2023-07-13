@@ -15,73 +15,15 @@ class TransactionController extends Controller
     public function index()
     {
         $transaction = Transaction::with('users')->get();
-        // dd($transaction);
         return view('admin.transaction.index', ['transaksi' => $transaction]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show_daily_transaction()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Transaction $transaction)
-    {
-        //
+        $currentDay = date('d');
+        $transaction = Transaction::with('users')->whereDay('created_at', $currentDay)->get();
+        $today_income = Transaction::whereDay('created_at', $currentDay)->sum('grandtotal');
+        $today_count = Transaction::whereDay('created_at', $currentDay)->count();
+        return view('cashier.transaction.index', ['transaksi' => $transaction, 'today_income' => $today_income, 'today_count' => $today_count]);
     }
 }

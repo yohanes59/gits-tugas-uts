@@ -54,6 +54,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/checkout', [CartController::class, 'insertData'])->name('checkout');
         Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
 
+        Route::get('/transaction', [TransactionController::class, 'show_daily_transaction']);
+        Route::get('/detail-transaction/{id}', [DetailTransactionController::class, 'show_cashier_detail_transaction']);
+
         Route::get('/profile/{id}', [AuthController::class, 'edit'])->middleware('CheckRole');
         Route::post('/profile/{id}', [AuthController::class, 'update'])->middleware('CheckRole');
     });
