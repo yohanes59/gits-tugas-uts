@@ -18,7 +18,7 @@ class AuthController extends Controller
 	{
 		$user = User::get();
 
-		return view('auth/register',['users' => $user]);
+		return view('auth/register', ['users' => $user]);
 	}
 
 	public function doRegister(AuthRequest $request)
@@ -72,19 +72,23 @@ class AuthController extends Controller
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-		
+
 		return view('cashier.profile.index', ['users' => $user]);
 	}
 
 	public function update(Request $request, $id)
 	{
-        
 		$user = [
-			'name' => $request->name
+			'name' => $request->name,
+			'email' => $request->email,
 		];
+
+		if ($request->password !== null) {
+			$user['password'] = Hash::make($request->password);
+		}
 
 		User::find($id)->update($user);
 
-		return redirect('/cashier/profile/'.$id)->with('alert','Berhasil mengubah akun kasir');
+		return redirect('/cashier/profile/' . $id)->with('alert', 'Berhasil mengubah akun kasir');
 	}
 }
