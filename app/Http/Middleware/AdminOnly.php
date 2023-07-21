@@ -17,10 +17,10 @@ class AdminOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role == 'Kasir') {
-            return redirect('/cashier/cart');
+        if(Auth::check() && Auth::user()->role != 'Admin') {
+            return redirect('/cashier/order');
         }
-    
+
         return $next($request);
     }
 }

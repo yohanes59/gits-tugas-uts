@@ -22,49 +22,39 @@ use App\Http\Controllers\ReceiptController;
 |
 */
 
-Route::controller(AuthController::class)->group(function () {
-    // Register Error pindah kebawah 
-    Route::get('/login', 'login')->name('login')->middleware('isLogin');
-    Route::post('/login', 'doLogin')->name('do.login');
-    Route::get('/logout', 'logout')->name('logout');
-    // route untuk edit akun kasir setelah login
-    // route untuk delete akun kasir setelah login
-});
+Route::get('/', [AuthController::class, 'login'])->name('login')->middleware('isLogin');
+Route::post('/', [AuthController::class, 'doLogin'])->name('do.login');
 
 Route::middleware('auth')->group(function () {
-    Route::prefix('/admin')->group(function () {
-        Route::resource('/category', CategoryController::class)->middleware('AdminOnly');
-        Route::resource('/product', ProductController::class)->middleware('AdminOnly');
-        Route::get('/transaction', [TransactionController::class, 'index'])->middleware(('AdminOnly'));
-        Route::get('/detail-transaction/{id}', [DetailTransactionController::class, 'show'])->middleware('AdminOnly');
+    Route::get('/profile/{id}', [AuthController::class, 'edit']);
+    Route::post('/profile/{id}', [AuthController::class, 'update']);
 
-        Route::controller(DashboardController::class)->group(function () {
-            Route::get('/dashboard', 'index')->middleware('AdminOnly');
-            Route::get('/cashier-account', 'account')->middleware('AdminOnly');
-            Route::get('/cashier-account/edit/{id}', 'edit')->name('edit-cashier.view')->middleware('AdminOnly');
+    Route::middleware('AdminOnly')->group(function () {
+        Route::prefix('/admin')->group(function () {
+            Route::get('/dashboard', [DashboardController::class, 'index']);
+            Route::get('/cashier-account', [DashboardController::class, 'account']);
+            Route::get('/register', [AuthController::class, 'register'])->name('register');
+            Route::post('/register', [AuthController::class, 'doRegister'])->name('do.register');
+            Route::post('/cashier-account/delete/{id}', [DashboardController::class, 'destroy']);
 
-            Route::post('/cashier-account/edit/{id}', 'update')->middleware('AdminOnly');
-            Route::post('/cashier-account/delete/{id}', 'destroy')->middleware('AdminOnly');
+            Route::resource('/category', CategoryController::class);
+            Route::resource('/product', ProductController::class);
+            Route::get('/transaction', [TransactionController::class, 'index']);
+            Route::get('/detail-transaction/{id}', [DetailTransactionController::class, 'show']);
         });
     });
 
-    Route::prefix('/cashier')->group(function () {
-        Route::resource('/cart', CartController::class)->middleware('CheckRole');
-        Route::resource('/order', OrderController::class)->middleware('CheckRole');
-        Route::post('/checkout', [CartController::class, 'insertData'])->name('checkout');
-        Route::get('/receipt', [ReceiptController::class, 'index'])->name('receipt');
+    Route::middleware('CashierOnly')->group(function () {
+        Route::prefix('/cashier')->group(function () {
+            Route::resource('/cart', CartController::class);
+            Route::resource('/order', OrderController::class);
+            Route::post('/checkout', [CartController::class, 'insertData'])->name('checkout');
+            Route::get('/receipt', [ReceiptController::class, 'index'])->name('receipt');
 
-        Route::get('/transaction', [TransactionController::class, 'show_daily_transaction']);
-        Route::get('/detail-transaction/{id}', [DetailTransactionController::class, 'show_cashier_detail_transaction']);
+            Route::get('/transaction', [TransactionController::class, 'show_daily_transaction']);
+            Route::get('/detail-transaction/{id}', [DetailTransactionController::class, 'show_cashier_detail_transaction']);
+        });
     });
 
-    Route::get('/profile/{id}', [AuthController::class, 'edit']);
-    Route::post('/profile/{id}', [AuthController::class, 'update']);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
-Route::controller(AuthController::class)->group(function () {
-    Route::get('/admin/register', 'register')->name('register');
-    Route::post('/register', 'doRegister')->name('do.register');
-});
-
-Route::redirect('/', '/login');
