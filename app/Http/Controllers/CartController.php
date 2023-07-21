@@ -67,6 +67,6 @@ class CartController extends Controller
             }
         }
 
-        return redirect('/cashier/invoice')->with(['transaction' => $transaction, 'cart' => $cart]);
+        return redirect('/cashier/receipt')->with(['transaction' => $transaction, 'cart' => $cart]);
     }
 }

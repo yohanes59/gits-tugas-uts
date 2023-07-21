@@ -126,7 +126,7 @@
 <script>
     function payConfirmation() {
         if (confirm('Apakah Anda Ingin Menyelesaikan Transaksi ini?')) {
-            window.location.href = '/invoice';
+            window.location.href = '/receipt';
         }
     }
 </script>

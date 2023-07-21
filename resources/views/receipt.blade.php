@@ -43,7 +43,7 @@
             width: 90px;
         }
 
-        h1 {
+        .receipt_number {
             border-top: 1px solid #5D6975;
             border-bottom: 1px solid #5D6975;
             color: #5D6975;
@@ -54,11 +54,11 @@
             margin: 0 0 20px 0;
         }
 
-        #project {
+        #receipt_info {
             float: left;
         }
 
-        #project span {
+        #receipt_info span {
             color: #5D6975;
             text-align: right;
             width: 52px;
@@ -67,14 +67,10 @@
             font-size: 0.8em;
         }
 
-        #company {
-            float: right;
-            text-align: right;
-        }
-
-        #project div,
+        #receipt_info div,
         #company div {
             white-space: nowrap;
+            padding-top: 10px;
         }
 
         table {
@@ -107,8 +103,8 @@
         }
 
         table td {
-            padding: 20px;
-            text-align: right;
+            padding: 15px;
+            text-align: center;
         }
 
         table td.service,
@@ -127,29 +123,21 @@
             ;
         }
 
-        #thanks {
-            font-size: 2em;
-            margin-bottom: 50px;
-            margin-top: 50px;
-
-            padding-left: 18px;
-            border-left: 4px solid #0087C3;
-        }
-
         .total {
             font-weight: bold;
             font-size: 16px;
             text-align: right;
             margin-top: 20px;
+            margin-right: 38px;
         }
 
         footer {
             color: #5D6975;
             width: 100%;
-            height: 30px;
             position: absolute;
-            bottom: 0;
+            margin-top: 20px;
             border-top: 1px solid #C1CED9;
+            border-bottom: 1px solid #C1CED9;
             padding: 8px 0;
             text-align: center;
         }
@@ -166,16 +154,14 @@
     <header class="clearfix">
         <div id="logo">
             <img src="{{ asset('img/store.png') }}">
+            <h1>Cafe XYZ</h1>
         </div>
-        <h1>INVOICE #{{ $transaction->id }}</h1>
-<!--         <div id="company" class="clearfix">
-            <div>Toko XYZ</div>
-        </div> -->
-        <!-- <div id="project">
-            <div><span>PROJECT</span> Website POS - Toko XYZ</div>
-            <div><span>TASK</span> Tugas Akhir</div>
-            <div><span>MITRA</span> Universitas Indraprasta PGRI</div>
-        </div> -->
+        <h2 class="receipt_number">Receipt #{{ $transaction->id }}</h2>
+        <div id="receipt_info">
+            <div><span>Cashier :</span> {{ Auth::user()->name }}</div>
+            <div><span>Tanggal :</span> {{ date('d F Y', strtotime($transaction->created_at)) }}</div>
+            <div><span>Jam :</span> {{ $transaction->created_at->format('H:i:s') }}</div>
+        </div>
     </header>
     <main>
         <table>
@@ -195,19 +181,17 @@
                         <td class="unit">Rp {{ number_format(App\Models\Product::find($item['product_id'])->price) }}
                         </td>
                         <td class="qty">{{ $item['quantity'] }}</td>
-                        <td class="total">Rp {{ number_format($item['total']) }}</td>
+                        <td>Rp {{ number_format($item['total']) }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
         <div>
-            <div class="grand total">GRAND TOTAL</div>
-            <div class="grand total">Rp {{ number_format($transaction->grandtotal) }}</div>
+            <div class="grand total">GRAND TOTAL : Rp {{ number_format($transaction->grandtotal) }}</div>
         </div>
-        <div id="thanks">Thank you for your order!</div>
     </main>
     <footer>
-        Invoice was created on a computer and is valid without the signature and seal.
+        Terima Kasih - Silahkan datang lagi!!
     </footer>
 </body>
 

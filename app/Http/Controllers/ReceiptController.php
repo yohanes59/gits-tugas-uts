@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
-class InvoiceController extends Controller
+class ReceiptController extends Controller
 {
     public function index(Request $request)
     {
@@ -14,6 +14,6 @@ class InvoiceController extends Controller
 
         $request->session()->forget('cart');
 
-        return view('invoice', ['transaction' => $transaction, 'cart' => $cart]);
+        return view('receipt', ['transaction' => $transaction, 'cart' => $cart]);
     }
 }

@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon">
             <img class="img-fluid" width="40" height="40" src="{{ asset('img/store.png') }}" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">Toko XYZ</div>
+        <div class="sidebar-brand-text mx-3">Cafe XYZ</div>
     </div>
 
     <!-- Divider -->
