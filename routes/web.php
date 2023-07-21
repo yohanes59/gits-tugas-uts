@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DetailTransactionController;
-use App\Http\Controllers\ReceiptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('/category', CategoryController::class);
             Route::resource('/product', ProductController::class);
             Route::get('/transaction', [TransactionController::class, 'index']);
+            Route::get('/sales', [SalesController::class, 'index']);
             Route::get('/detail-transaction/{id}', [DetailTransactionController::class, 'show']);
         });
     });

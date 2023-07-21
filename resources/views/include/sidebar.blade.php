@@ -42,6 +42,13 @@
                 <i class="fa-solid fa-fw fa-money-bills"></i>
                 <span>Transaction</span></a>
         </li>
+
+        <!-- sales list -->
+        <li class="nav-item {{ request()->is('admin/sales') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ url('admin/sales') }}">
+                <i class="fa-solid fa-fw fa-chart-line"></i>
+                <span>Sales</span></a>
+        </li>
         
         <!-- account-cashier -->
         <li class="nav-item {{ request()->is('admin/cashier-account') ? 'active' : '' }}">
