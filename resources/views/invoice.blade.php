@@ -165,17 +165,17 @@
 <body>
     <header class="clearfix">
         <div id="logo">
-            <img src="{{ asset('img/coffee.png') }}">
+            <img src="{{ asset('img/store.png') }}">
         </div>
         <h1>INVOICE #{{ $transaction->id }}</h1>
-        <div id="company" class="clearfix">
-            <div>Kelompok 11</div>
-        </div>
-        <div id="project">
-            <div><span>PROJECT</span> Website POS - Coffee Shop</div>
-            <div><span>TASK</span> Tugas UTS</div>
-            <div><span>MITRA</span> PT Gits Indonesia</div>
-        </div>
+<!--         <div id="company" class="clearfix">
+            <div>Toko XYZ</div>
+        </div> -->
+        <!-- <div id="project">
+            <div><span>PROJECT</span> Website POS - Toko XYZ</div>
+            <div><span>TASK</span> Tugas Akhir</div>
+            <div><span>MITRA</span> Universitas Indraprasta PGRI</div>
+        </div> -->
     </header>
     <main>
         <table>

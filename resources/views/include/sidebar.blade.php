@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <div class="sidebar-brand d-flex align-items-center justify-content-center">
         <div class="sidebar-brand-icon">
-            <img class="img-fluid" width="40" height="40" src="{{ asset('img/coffee.png') }}" alt="">
+            <img class="img-fluid" width="40" height="40" src="{{ asset('img/store.png') }}" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">Coffee Shop</div>
+        <div class="sidebar-brand-text mx-3">Toko XYZ</div>
     </div>
 
     <!-- Divider -->
