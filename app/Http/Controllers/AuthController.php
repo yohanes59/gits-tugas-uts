@@ -72,7 +72,6 @@ class AuthController extends Controller
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-
 		return view('cashier.profile.index', ['users' => $user]);
 	}
 
@@ -89,6 +88,6 @@ class AuthController extends Controller
 
 		User::find($id)->update($user);
 
-		return redirect('/cashier/profile/' . $id)->with('alert', 'Berhasil mengubah akun kasir');
+		return redirect('/profile/' . $id)->with('alert', 'Berhasil mengubah akun');
 	}
 }
