@@ -85,6 +85,6 @@ class AuthController extends Controller
 
 		User::find($id)->update($user);
 
-		return redirect('/cashier/profile/'.$id)->with('alert','Berhasil Update data');
+		return redirect('/cashier/profile/'.$id)->with('alert','Berhasil mengubah akun kasir');
 	}
 }
