@@ -53,7 +53,6 @@ class DashboardController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $user = [
             'name' => $request->name
         ];

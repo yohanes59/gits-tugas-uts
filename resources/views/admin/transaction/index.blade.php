@@ -4,6 +4,7 @@
 
 @section('content')
     <h3>List Transaksi</h3>
+    <a href="" class="btn btn-info my-3">Cetak Laporan</a>
 
     <div class="table-responsive mt-3">
         <table class="table table-hover border">
@@ -28,7 +29,7 @@
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
                         </td>
-                    </tr>    
+                    </tr>
                 @empty
                     <tr>
                         <td colspan="4">Belum ada data transaksi</td>
@@ -36,5 +37,10 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+
+    {{-- pagination --}}
+    <div class="d-flex mb-3 justify-content-center">
+        {!! $transaksi->links() !!}
     </div>
 @endsection

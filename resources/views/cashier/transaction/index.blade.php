@@ -73,4 +73,9 @@
             </tbody>
         </table>
     </div>
+
+    {{-- pagination --}}
+    <div class="d-flex mb-3 justify-content-center">
+        {!! $transaksi->links() !!}
+    </div>
 @endsection

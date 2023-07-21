@@ -9,7 +9,7 @@
         </a>
         <div class="fs-4">Tambah Kategori</div>
     </div>
-    
+
     <div class="col-md-5 mt-4">
         <form action="{{ url('/admin/category') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -21,9 +21,9 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-    
+
             <div><img id="image-preview"></div>
-    
+
             <div class="my-2">
                 <label for="gambar" class="form-label">Image</label>
                 <input type="file" id="gambar" class="form-control" name="gambar" onchange="previewImage()">

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Barryvdh\DomPDF\PDF;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaction;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Contracts\Session\Session;
 
 class CartController extends Controller
 {

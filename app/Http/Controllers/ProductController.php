@@ -67,8 +67,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::with('category')->findOrFail($id);
-        return view('admin.product.detail', ['produk' => $product]);
+        
     }
 
     /**

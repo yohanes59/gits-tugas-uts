@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Rules;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthController extends Controller
 {
@@ -72,7 +70,7 @@ class AuthController extends Controller
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-		return view('cashier.profile.index', ['users' => $user]);
+		return view('profile.index', ['users' => $user]);
 	}
 
 	public function update(Request $request, $id)
