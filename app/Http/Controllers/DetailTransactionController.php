@@ -15,7 +15,7 @@ class DetailTransactionController extends Controller
         $transactionID = $transaction->id;
 
         // cari data detail transaksi sesuai dengan transaction_id
-        $dataDetailTransaction = DetailTransaction::with('product.category')->where('transaction_id', $transactionID)->get();
+        $dataDetailTransaction = DetailTransaction::where('transaction_id', $transactionID)->get();
         return view('admin.transaction.detail', ['detail' => $dataDetailTransaction]);
     }
 
@@ -26,7 +26,7 @@ class DetailTransactionController extends Controller
         $transactionID = $transaction->id;
 
         // cari data detail transaksi sesuai dengan transaction_id
-        $dataDetailTransaction = DetailTransaction::with('product.category')->where('transaction_id', $transactionID)->get();
+        $dataDetailTransaction = DetailTransaction::where('transaction_id', $transactionID)->get();
         return view('cashier.transaction.detail', ['detail' => $dataDetailTransaction]);
     }
 }

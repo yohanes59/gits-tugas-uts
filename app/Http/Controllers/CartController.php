@@ -51,12 +51,19 @@ class CartController extends Controller
         $cart = $request->session()->get('cart', []);
 
         foreach ($cart as $productId => $item) {
-            DetailTransaction::create([
-                'transaction_id' => $transaction->id,
-                'product_id' => $item['product_id'],
-                'quantity' => $item['quantity'],
-                'total' => $item['total'],
-            ]);
+            $productIds = is_array($item['product_id']) ? $item['product_id'] : [$item['product_id']];
+            $products = Product::where('id', $productIds)->with('category')->get();
+
+            foreach ($products as $product) {
+                DetailTransaction::create([
+                    'transaction_id' => $transaction->id,
+                    'product_name' => $product->name,
+                    'product_price' => $product->price,
+                    'product_category' => $product->category->name,
+                    'quantity' => $item['quantity'],
+                    'total' => $item['total'],
+                ]);
+            }
         }
 
         return redirect('/cashier/invoice')->with(['transaction' => $transaction, 'cart' => $cart]);
