@@ -22,13 +22,6 @@
                 <span>Dashboard Admin</span></a>
         </li>
 
-        <!-- transaction list -->
-        <li class="nav-item {{ request()->is('admin/transaction') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ url('admin/transaction') }}">
-                <i class="fa-solid fa-fw fa-money-bills"></i>
-                <span>Transaction</span></a>
-        </li>
-
         <!-- category -->
         <li class="nav-item {{ request()->is('admin/category') ? 'active' : '' }}">
             <a class="nav-link" href="{{ url('admin/category') }}">
@@ -43,6 +36,13 @@
                 <span>Product</span></a>
         </li>
 
+        <!-- transaction list -->
+        <li class="nav-item {{ request()->is('admin/transaction') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ url('admin/transaction') }}">
+                <i class="fa-solid fa-fw fa-money-bills"></i>
+                <span>Transaction</span></a>
+        </li>
+        
         <!-- account-cashier -->
         <li class="nav-item {{ request()->is('admin/cashier-account') ? 'active' : '' }}">
             <a class="nav-link" href="{{ url('admin/cashier-account') }}">

@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-md-5">
-            <form action="{{ url('/cashier/profile/'.$users->id) }}" method="POST">
+            <form action="{{ url('/profile/'.$users->id) }}" method="POST">
                 @csrf
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">

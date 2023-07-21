@@ -56,10 +56,10 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/transaction', [TransactionController::class, 'show_daily_transaction']);
         Route::get('/detail-transaction/{id}', [DetailTransactionController::class, 'show_cashier_detail_transaction']);
-
-        Route::get('/profile/{id}', [AuthController::class, 'edit'])->middleware('CheckRole');
-        Route::post('/profile/{id}', [AuthController::class, 'update'])->middleware('CheckRole');
     });
+
+    Route::get('/profile/{id}', [AuthController::class, 'edit']);
+    Route::post('/profile/{id}', [AuthController::class, 'update']);
 });
 
 Route::controller(AuthController::class)->group(function () {
