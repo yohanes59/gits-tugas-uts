@@ -57,6 +57,7 @@ class CartController extends Controller
             foreach ($products as $product) {
                 DetailTransaction::create([
                     'transaction_id' => $transaction->id,
+                    'product_id' => $item['product_id'],
                     'product_name' => $product->name,
                     'product_price' => $product->price,
                     'product_category' => $product->category->name,

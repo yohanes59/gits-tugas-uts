@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('transaction_id');
             $table->foreign('transaction_id')->references('id')->on('transactions')->cascadeOnDelete();
+            $table->unsignedInteger('product_id');
             $table->string('product_name', 50);
             $table->unsignedInteger('product_price');
             $table->string('product_category', 50);
