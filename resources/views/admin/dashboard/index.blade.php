@@ -146,4 +146,28 @@
             </div>
         </div>
     </div>
+
+    <div class="h4 mb-4">Best Seller</div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover border">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Kategori</th>
+                    <th scope="col">Nama Produk</th>
+                    <th scope="col">Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($best_seller as $item)
+                    <tr>
+                        <th class="py-3 align-middle">{{ $loop->iteration }}</th>
+                        <td class="py-3 align-middle">{{ $item->category_name }}</td>
+                        <td class="py-3 align-middle">{{ $item->product_name }}</td>
+                        <td class="py-3 align-middle">{{ $item->total_quantity }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

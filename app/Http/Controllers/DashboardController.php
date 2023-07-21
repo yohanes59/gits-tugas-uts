@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\DetailTransaction;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -21,6 +23,13 @@ class DashboardController extends Controller
         $data['product'] = Product::count();
         $data['transaction'] = Transaction::count();
         $data['cashier'] = User::where('name', '!=', 'admin')->get();
+        $data['best_seller'] = DetailTransaction::groupBy('product_id')
+            ->join('products', 'detail_transactions.product_id', '=', 'products.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('product_id', 'products.name as product_name', 'categories.name as category_name', DB::raw('SUM(quantity) as total_quantity'))
+            ->orderByDesc('total_quantity')
+            ->limit(5)
+            ->get();
 
         $data['daily'] = Transaction::whereDay('created_at', $currentDay)->sum('grandtotal');
         $data['weekly'] = Transaction::whereRaw('WEEK(created_at) = ?', [$currentWeek])->sum('grandtotal');
