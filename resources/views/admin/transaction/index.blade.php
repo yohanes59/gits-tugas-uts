@@ -4,9 +4,9 @@
 
 @section('content')
     <h3>List Transaksi</h3>
-    <a href="" class="btn btn-info my-3">Cetak Laporan</a>
+    <button class="btn btn-info my-3 cetak">Cetak Laporan</button>
 
-    <div class="table-responsive mt-3">
+    <div class="table-responsive mt-3 cetak-area">
         <table class="table table-hover border">
             <thead class="bg-gray-300 text-dark">
                 <tr class="fw-semibold">
@@ -14,7 +14,7 @@
                     <td>ID</td>
                     <td>Nama Kasir</td>
                     <td>Total</td>
-                    <td>Action</td>
+                    <td class="aksi">Action</td>
                 </tr>
             </thead>
             <tbody class="bg-white">
@@ -24,7 +24,7 @@
                         <td class="py-3 align-middle">{{ $item->id }}</td>
                         <td class="py-3 align-middle">{{ $item->users->name }}</td>
                         <td class="py-3 align-middle">Rp {{ number_format($item->grandtotal, 0, ',', '.') }}</td>
-                        <td class="d-flex py-3 align-middle gap-2">
+                        <td class="d-flex py-3 align-middle gap-2 aksi">
                             <a href="/admin/detail-transaction/{{ $item->id }}" class="btn btn-sm btn-primary">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
@@ -44,3 +44,40 @@
         {!! $transaksi->links() !!}
     </div>
 @endsection
+
+@push('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let tombolCetak = document.querySelector('.cetak');
+            tombolCetak.addEventListener('click', function() {
+                let elemenCetak = document.querySelector('.cetak-area');
+                let kolomAction = document.querySelectorAll('.aksi');
+
+                // Menghapus kolom Action
+                kolomAction.forEach(function(element) {
+                    element.style.display = 'none';
+                });
+
+                let printWindow = window.open('', '_blank');
+
+                printWindow.document.open();
+                printWindow.document.write('<html><head><title>Cetak Transaksi</title>');
+                printWindow.document.write(
+                    '<style>@media print { .table { border-collapse: collapse; width: 100%; } .table td, .table th { border: 1px solid black; padding: 0.5rem; } }</style>'
+                );
+                printWindow.document.write('</head><body>');
+                printWindow.document.write('<h1 style="text-align: center;">Laporan Transaksi</h1>');
+                printWindow.document.write(elemenCetak.innerHTML);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.print();
+                printWindow.close();
+
+                // Mengembalikan tampilan kolom Action setelah mencetak
+                kolomAction.forEach(function(element) {
+                    element.style.display = '';
+                });
+            });
+        });
+    </script>
+@endpush
