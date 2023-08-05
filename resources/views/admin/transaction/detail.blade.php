@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Transaction Detail')
-
 @section('content')
     <div class="d-flex align-items-center gap-3 my-3">
         <a href="{{ url('admin/transaction') }}" class="btn btn-success">

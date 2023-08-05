@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Product - Edit')
-
 @section('content')
     <div class="d-flex align-items-center gap-3 my-3">
         <a href="{{ url('admin/product') }}" class="btn btn-success">

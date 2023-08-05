@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Category - Edit')
-
 @section('content')
     <div class="d-flex align-items-center gap-3 my-3">
         <a href="{{ url('admin/category') }}" class="btn btn-success">
@@ -22,7 +20,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-    
+
             <div>
                 @if (isset($kategori) && $kategori->image)
                     <img id="image-preview" src="{{ asset('storage/images/' . $kategori->image) }}" width="160px"
@@ -31,7 +29,7 @@
                     <img id="image-preview">
                 @endif
             </div>
-    
+
             <div class="my-2">
                 <label for="gambar" class="form-label">Image</label>
                 <input type="file" id="gambar" class="form-control" name="gambar" onchange="previewImage()">

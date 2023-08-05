@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Category - Beranda')
-
 @section('content')
     <h3>Beranda Category</h3>
     <a href="{{ url('/admin/category/create') }}" class="btn btn-primary my-3">Tambah Data</a>
@@ -11,7 +9,7 @@
         <div class="alert alert-success py-3 alert-dismissible fade show" role="alert">
             <strong>{{ $message }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>    
+        </div>
     @endif
 
     <div class="table-responsive">
@@ -32,8 +30,8 @@
                         <td class="py-3 align-middle">{{ $item->name }}</td>
                         <td class="py-3 align-middle">
                             @if ($item->image != '')
-                                <img src="{{ asset('storage/images/' . $item->image) }}" alt="gambar kategori {{ $item->name }}" width="40"
-                                    height="40">
+                                <img src="{{ asset('storage/images/' . $item->image) }}"
+                                    alt="gambar kategori {{ $item->name }}" width="40" height="40">
                             @else
                                 <img src="{{ asset('img/no-image.jpg') }}" alt="gambar kategori {{ $item->name }}"
                                     width="40" height="40">

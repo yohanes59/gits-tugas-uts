@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Category - Tambah')
-
 @section('content')
     <div class="d-flex align-items-center gap-3 my-3">
         <a href="{{ url('admin/category') }}" class="btn btn-success">

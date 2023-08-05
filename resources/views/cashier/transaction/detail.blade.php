@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Transaction Detail')
-
 @section('content')
     <div class="d-flex align-items-center gap-3 my-3">
         <a href="{{ url('cashier/transaction') }}" class="btn btn-success">
@@ -12,7 +10,6 @@
 
     <div class="mt-4">
         <div class="fs-5 fw-medium">Transaction ID : {{ $detail[0]['transaction_id'] }}</div>
-
         <div class="table-responsive mt-3">
             <table class="table table-hover border">
                 <thead class="bg-gray-300 text-dark">

@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Admin - Dashboard')
-
 @section('content')
     <div class="h3 mb-4">Dashboard admin</div>
     <div class="row">

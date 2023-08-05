@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Profile Kasir')
-
 @section('content')
     <div class="d-flex align-items-center gap-3 my-3">
         <a href="{{ url('cashier/order') }}" class="btn btn-success">
@@ -15,12 +13,12 @@
         <div class="alert alert-success py-3 alert-dismissible fade show" role="alert">
             <strong>{{ $message }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>    
+        </div>
     @endif
 
     <div class="row">
         <div class="col-md-5">
-            <form action="{{ url('/profile/'.$users->id) }}" method="POST">
+            <form action="{{ url('/profile/' . $users->id) }}" method="POST">
                 @csrf
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">

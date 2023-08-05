@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Kasir - Cart')
-
 @section('content')
     {{-- alert --}}
     @if ($message = Session::get('alert'))
@@ -32,24 +30,21 @@
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
                                 <div class="card">
                                     @if ($item->image != '')
-                                        <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top"
-                                            height="200" alt="Gambar Produk {{ $item->name }}">
+                                        <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top" height="200" alt="Gambar Produk {{ $item->name }}">
                                     @else
                                         <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
                                     @endif
                                     <div class="card-body mx-n1">
                                         <input type="hidden" value="{{ $item->id }}" name="product_id[]">
                                         <div class="card-title text-truncate">{{ $item->name }}</div>
-                                        <div class="card-title fw-bold">Rp {{ number_format($item->price, 0, ',', '.') }}
-                                        </div>
+                                        <div class="card-title fw-bold">Rp {{ number_format($item->price, 0, ',', '.') }}</div>
                                         <div class="d-flex justify-content-between border rounded-2 overflow-hidden mb-3">
                                             <button type="button" style="max-width: 40px"
                                                 class="w-100 btn btn-light text-center py-2 rounded-0 border-end"
                                                 id="minus-btn">-</button>
-                                            <input name="qty[]" class="w-100 text-center py-2 border-0 qty" value="0">
-                                            <button type="button" style="max-width: 40px"
-                                                class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start"
-                                                id="plus-btn">+</button>
+                                            <input name="qty[]" class="w-100 text-center py-2 border-0 qty"
+                                                value="0">
+                                            <button type="button" style="max-width: 40px" class="w-100 text-center btn btn-light text-center py-2 rounded-0 border-start" id="plus-btn">+</button>
                                         </div>
                                     </div>
                                 </div>

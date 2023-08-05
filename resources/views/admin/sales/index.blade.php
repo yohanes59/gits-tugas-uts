@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Sales - Beranda')
-
 @section('content')
     <h3>Beranda Penjualan</h3>
     <button class="btn btn-info my-3 cetak">Cetak Laporan</button>
