@@ -11,9 +11,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DetailTransactionController;
+use App\Http\Controllers\GetImagesController;
 
 Route::get('/', [AuthController::class, 'login'])->name('login')->middleware('isLogin');
 Route::post('/', [AuthController::class, 'doLogin'])->name('do.login');
+Route::get('/storage/images/{filename}', [GetImagesController::class, 'displayImage'])->name('image.displayImage');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/{id}', [AuthController::class, 'edit']);

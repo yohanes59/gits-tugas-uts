@@ -21,7 +21,7 @@
                                 <div class="row py-2">
                                     <div class="col-md-2 mb-4 mb-lg-0">
                                         <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                                            <img src="{{ asset('storage/images/' . $products->where('id', $item['product_id'])->first()->image) }}" alt="" class="w-100 rounded-1" height="150">
+                                            <img src="{{ route('image.displayImage', $products->where('id', $item['product_id'])->first()->image) }}" alt="" class="w-100 rounded-1" height="150">
                                         </div>
                                     </div>
 

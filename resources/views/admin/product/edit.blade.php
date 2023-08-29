@@ -55,7 +55,7 @@
             </div>
 
             @if (isset($produk) && $produk->image)
-                <img id="image-preview" src="{{ asset('storage/images/' . $produk->image) }}" width="160px"
+                <img id="image-preview" src="{{ route('image.displayImage', $produk->image) }}" width="160px"
                     height="150px">
             @else
                 <img id="image-preview">

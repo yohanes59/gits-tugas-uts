@@ -30,7 +30,7 @@
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
                                 <div class="card">
                                     @if ($item->image != '')
-                                        <img src="{{ asset('storage/images/' . $item->image) }}" class="card-img-top" height="200" alt="Gambar Produk {{ $item->name }}">
+                                        <img src="{{ route('image.displayImage', $item->image) }}" class="card-img-top" height="200" alt="Gambar Produk {{ $item->name }}">
                                     @else
                                         <img src="{{ asset('img/no-image.jpg') }}" class="card-img-top" alt="...">
                                     @endif

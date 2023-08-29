@@ -23,7 +23,7 @@
 
             <div>
                 @if (isset($kategori) && $kategori->image)
-                    <img id="image-preview" src="{{ asset('storage/images/' . $kategori->image) }}" width="160px"
+                    <img id="image-preview" src="{{ route('image.displayImage', $kategori->image) }}" width="160px"
                         height="150px">
                 @else
                     <img id="image-preview">

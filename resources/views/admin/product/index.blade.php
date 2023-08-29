@@ -32,7 +32,7 @@
                         <td class="py-3 align-middle">{{ $item->category->name }}</td>
                         <td class="py-3 align-middle">
                             @if ($item->image != '')
-                                <img src="{{ asset('storage/images/' . $item->image) }}" alt="gambar kategori {{ $item->name }}" width="40" height="40">
+                                <img src="{{ route('image.displayImage', $item->image) }}" alt="gambar kategori {{ $item->name }}" width="40" height="40">
                             @else
                                 <img src="{{ asset('img/no-image.jpg') }}" alt="gambar kategori {{ $item->name }}" width="40" height="40">
                             @endif
