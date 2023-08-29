@@ -23,10 +23,9 @@ class DashboardController extends Controller
         $data['product'] = Product::count();
         $data['transaction'] = Transaction::count();
         $data['cashier'] = User::where('name', '!=', 'admin')->get();
-        $data['best_seller'] = DetailTransaction::groupBy('product_id')
-            ->join('products', 'detail_transactions.product_id', '=', 'products.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->select('product_id', 'products.name as product_name', 'categories.name as category_name', DB::raw('SUM(quantity) as total_quantity'))
+        $data['best_seller'] = Product::with('category')
+            ->select('id', 'name as product_name', 'category_id')
+            ->withSum('detailtransaction as total_quantity', 'quantity')
             ->orderByDesc('total_quantity')
             ->limit(5)
             ->get();

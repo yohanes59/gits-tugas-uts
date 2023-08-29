@@ -18,8 +18,8 @@
                 @foreach ($sales as $item)
                     <tr>
                         <th class="py-3 align-middle">{{ $loop->iteration }}</th>
-                        <td class="py-3 align-middle">{{ $item->category_name }}</td>
-                        <td class="py-3 align-middle">{{ $item->product_name }}</td>
+                        <td class="py-3 align-middle">{{ $item->product->category->name }}</td>
+                        <td class="py-3 align-middle">{{ $item->product->name }}</td>
                         <td class="py-3 align-middle">{{ $item->total_quantity }}</td>
                     </tr>
                 @endforeach
@@ -44,18 +44,16 @@
                 let printWindow = window.open('', '_blank');
 
                 printWindow.document.open();
-                printWindow.document.write('<html><head><title>Cetak Penjualan</title>');
+                printWindow.document.write('<title>Cetak Penjualan</title>');
                 printWindow.document.write(
-                    '<style>@media print { .table { border-collapse: collapse; width: 100%; } .table td, .table th { border: 1px solid black; padding: 0.5rem; } }</style>'
+                    `<style>@media print { .table { border-collapse: collapse; width: 100%; } .table td, .table th { border: 1px solid black; padding: 0.5rem; } }</style>`
                 );
-                printWindow.document.write('</head><body>');
+
                 printWindow.document.write('<h1 style="text-align: center;">Laporan Penjualan</h1>');
                 printWindow.document.write(elemenCetak.innerHTML);
-                printWindow.document.write('</body></html>');
                 printWindow.document.close();
                 printWindow.print();
                 printWindow.close();
-
             });
         });
     </script>

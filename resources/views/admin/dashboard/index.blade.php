@@ -160,7 +160,7 @@
                 @foreach ($best_seller as $item)
                     <tr>
                         <th class="py-3 align-middle">{{ $loop->iteration }}</th>
-                        <td class="py-3 align-middle">{{ $item->category_name }}</td>
+                        <td class="py-3 align-middle">{{ $item->category->name }}</td>
                         <td class="py-3 align-middle">{{ $item->product_name }}</td>
                         <td class="py-3 align-middle">{{ $item->total_quantity }}</td>
                     </tr>

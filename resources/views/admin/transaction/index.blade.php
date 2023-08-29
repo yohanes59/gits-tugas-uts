@@ -59,14 +59,12 @@
                 let printWindow = window.open('', '_blank');
 
                 printWindow.document.open();
-                printWindow.document.write('<html><head><title>Cetak Transaksi</title>');
+                printWindow.document.write('<title>Cetak Transaksi</title>');
                 printWindow.document.write(
                     '<style>@media print { .table { border-collapse: collapse; width: 100%; } .table td, .table th { border: 1px solid black; padding: 0.5rem; } }</style>'
                 );
-                printWindow.document.write('</head><body>');
                 printWindow.document.write('<h1 style="text-align: center;">Laporan Transaksi</h1>');
                 printWindow.document.write(elemenCetak.innerHTML);
-                printWindow.document.write('</body></html>');
                 printWindow.document.close();
                 printWindow.print();
                 printWindow.close();
